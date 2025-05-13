@@ -1,0 +1,88 @@
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #71717a;
+  }
+}
+
+.typewriter {
+  font-family: monospace;
+  font-size: 1.25rem;
+  color: #71717a;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: max-content;
+  border-right: 2px solid #71717a;
+  white-space: nowrap;
+  animation: blink-caret 0.75s step-end infinite;
+  margin: 0 auto;
+}
+
+.typewriter::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  animation: typewriter 2s steps(18) forwards;
+}
+
+.dark .typewriter::after {
+  background: #09090b;
+}
+
+@keyframes typewriter {
+  to {
+    width: 0;
+  }
+}
+
+.typing-1 {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 2.5s steps(22, end) forwards;
+}
+
+.typing-2 {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 3s steps(60, end) forwards;
+  animation-delay: 2.5s;
+  visibility: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+.typewriter-wrapper {
+  display: inline-block;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 0.1em;
+  color: #71717a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .typewriter-cursor {
+    color: #a1a1aa;
+  }
+}

@@ -19,8 +19,8 @@ For detailed setup instructions, refer to the [Installation Guide](./INSTALLATIO
 ```bash
 git clone https://github.com/ibelick/nim.git
 cd nim
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
