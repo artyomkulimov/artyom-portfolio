@@ -152,8 +152,6 @@ function SnakeGame() {
         
         if (foodToEat) {
           ateFood = true
-          // Debug: Log when snakes eat food
-          console.log(`${aiSnake.color} snake ate food! Growing from ${newBody.length} segments`)
           // Remove the eaten food
           setAiFood(currentFood => 
             currentFood.filter(food => 
