@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="420" height="420">
+  <!-- background -->
+  <rect x="0" y="0" width="420" height="420" fill="#000000"/>
+  
+  <!-- shrunk + perfectly centered inner shape -->
+  <g transform="translate(78.375,130.875) scale(0.75)">
+    <path d="M0 0 C115.83 0 231.66 0 351 0 C351 69.63 351 139.26 351 211 C327.57 211 304.14 211 280 211 C280 187.9 280 164.8 280 141 C256.9 141 233.8 141 210 141 C210 117.9 210 94.8 210 71 C187.23 71 164.46 71 141 71 C141 94.1 141 117.2 141 141 C117.9 141 94.8 141 71 141 C71 164.1 71 187.2 71 211 C47.57 211 24.14 211 0 211 C0 141.37 0 71.74 0 0 Z" fill="#DF73FF"/>
+  </g>
+</svg>
