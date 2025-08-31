@@ -485,20 +485,16 @@ export default function Page() {
           </p>
         </div>
         <div className="mt-4 sm:mt-0 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-          <a href="https://github.com/wumpiee" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors flex items-center gap-1">
-            <Github className="w-4 h-4" />
+          <a href="https://github.com/wumpiee" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
             github
           </a>
-          <a href="mailto:artyomkulimov@gmail.com" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors flex items-center gap-1">
-            <Mail className="w-4 h-4" />
+          <a href="mailto:artyomkulimov@gmail.com" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
             email
           </a>
-          <a href="https://www.linkedin.com/in/artyom-kulimov-7a5032265/" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors flex items-center gap-1">
-            <Linkedin className="w-4 h-4" />
+          <a href="https://www.linkedin.com/in/artyom-kulimov-7a5032265/" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
             linkedin
             </a> 
-          <div className="text-neutral-600 dark:text-neutral-400 flex items-center gap-1">
-            <MessageSquare className="w-4 h-4" />
+          <div className="text-neutral-600 dark:text-neutral-400">
             discord: wumpiee
           </div>
         </div>
@@ -665,8 +661,7 @@ export default function Page() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-medium text-neutral-800 dark:text-neutral-200">smac khalifa university app</h3>
-                <a href="https://github.com/danielarbabian/martab" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors flex items-center gap-1 text-xs">
-                  <ExternalLink className="w-3 h-3" />
+                <a href="https://github.com/danielarbabian/martab" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors text-xs">
                   github
                 </a>
               </div>
