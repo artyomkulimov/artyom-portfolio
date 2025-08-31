@@ -1,6 +1,5 @@
 'use client'
 
-import { Github, Mail, Linkedin, MessageSquare, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useEffect, useState, useCallback } from 'react'
 
