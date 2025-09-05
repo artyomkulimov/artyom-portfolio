@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnimationToggle from './animation-toggle'
 
 const navItems = {
 	"/": {
@@ -26,6 +27,9 @@ export function Navbar() {
 								</Link>
 							);
 						})}
+					</div>
+					<div className="absolute right-0 top-0 py-1 px-2 m-1">
+						<AnimationToggle />
 					</div>
 				</nav>
 			</div>
