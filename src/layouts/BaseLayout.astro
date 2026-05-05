@@ -10,15 +10,15 @@ interface Props {
   variant?: 'default' | 'showcase';
 }
 
-const baseUrl = 'https://artyom-kulimov-portfolio.vercel.app';
 const {
   description = 'developer',
   title = 'artyom',
   variant = 'default',
 } = Astro.props;
 const pageTitle = title === 'artyom' ? 'artyom' : `${title} | artyom`;
-const canonicalUrl = new URL(Astro.url.pathname, baseUrl).toString();
-const ogImageUrl = new URL('/og.png', baseUrl).toString();
+const site = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+const ogImageUrl = new URL('/og.png', site).toString();
 ---
 
 <!doctype html>

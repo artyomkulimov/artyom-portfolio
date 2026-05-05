@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 
-const baseUrl = 'https://artyom-kulimov-portfolio.vercel.app';
 const routes = ['/', '/showcase/taptm', '/showcase/study-lens'];
 
 export const GET: APIRoute = () => {
+  const site = import.meta.env.SITE;
   const lastModified = new Date().toISOString().split('T')[0];
   const urls = routes
     .map((route) => {
-      const url = new URL(route, baseUrl).toString();
+      const url = new URL(route, site).toString();
       return `<url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`;
     })
     .join('');
