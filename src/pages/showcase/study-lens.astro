@@ -27,28 +27,18 @@ const flow = [
   },
 ];
 
-const skills = [
+const details = [
   "desktop automation",
   "websocket relay",
   "multimodal prompting",
-  "next.js chat ui",
   "python agent",
+  "next.js chat ui",
   "private prototype",
 ];
 
 const studyImageSizes =
-  "(min-width: 1280px) 760px, (min-width: 768px) 48vw, 92vw";
+  "(min-width: 1280px) 780px, (min-width: 768px) 58vw, 92vw";
 const studyImageWidths = [480, 720, 960, 1280, 1600];
-
-const screens = [
-  {
-    title: "question to answer",
-    kicker: "answer",
-    src: studyLensContent,
-    alt: "Study Lens showing a question paper screenshot and a model answer",
-    body: "A captured question paper sits above the model answer, so the study flow is visible in one readable screen.",
-  },
-];
 ---
 
 <BaseLayout
@@ -57,133 +47,102 @@ const screens = [
   variant="showcase"
 >
   <section
-    class="overflow-hidden bg-[#050807] text-neutral-50"
+    class="bg-white text-neutral-950 dark:bg-black dark:text-neutral-50"
     data-showcase-page
   >
-    <div class="border-b border-neutral-800">
+    <div class="mx-auto max-w-7xl px-5 pt-8 pb-14 md:px-8 lg:pt-10 lg:pb-20">
       <div
-        class="mx-auto grid min-h-[760px] max-w-7xl grid-cols-1 gap-10 px-5 py-10 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-8 lg:py-14"
+        class="grid gap-10 border-neutral-200 border-b pb-14 dark:border-neutral-800 md:grid-cols-[0.8fr_1.2fr] md:items-end"
       >
-        <div class="max-w-xl">
+        <div>
           <p
-            class="text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400"
+            class="font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
           >
-            private ai study prototype
+            private prototype / ai study workflow
           </p>
           <h1
-            class="mt-5 text-[4rem] font-semibold leading-[0.9] tracking-tight text-neutral-50 sm:text-[5.8rem]"
+            class="mt-5 text-6xl font-semibold leading-[0.9] tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-8xl"
           >
             study lens
           </h1>
-          <p class="mt-6 max-w-lg text-lg leading-8 text-neutral-300">
-            A screenshot-based study companion for reviewing solved problems,
-            checking reasoning, and turning mistakes into focused feedback.
+        </div>
+        <p
+          class="max-w-2xl text-balance text-lg leading-8 text-neutral-700 dark:text-neutral-300"
+        >
+          A screenshot-based study companion for reviewing solved problems,
+          checking reasoning, and turning mistakes into focused feedback.
+        </p>
+      </div>
+
+      <div
+        class="grid gap-12 pt-10 pb-14 md:grid-cols-[0.72fr_1.28fr] md:items-start lg:pt-12 lg:pb-20"
+      >
+        <div class="md:sticky md:top-24">
+          <p
+            class="font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
+          >
+            question to answer
+          </p>
+          <h2
+            class="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100"
+          >
+            one capture, one readable answer
+          </h2>
+          <p
+            class="mt-4 max-w-md text-base leading-7 text-neutral-700 dark:text-neutral-300"
+          >
+            The captured worksheet sits above the model answer so the context,
+            reasoning, and correction stay visible in a single review surface.
           </p>
 
-          <div
-            class="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-l border-neutral-700 pl-4 text-sm text-neutral-500"
+          <ul
+            aria-label="study lens technical details"
+            class="mt-10 divide-y divide-neutral-200 font-mono text-[11px] leading-5 text-neutral-600 dark:divide-neutral-800 dark:text-neutral-400"
           >
-            <span>spacebar capture loop</span>
-            <span>model-answer output</span>
-            <span>exam question context</span>
-          </div>
-
-          <div class="mt-7 flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span class="inline-flex rounded-md border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs font-medium text-neutral-300 shadow-sm">
-                {skill}
-              </span>
+            {details.map((detail) => (
+              <li class="py-2">{detail}</li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <div
-          class="relative flex min-h-[520px] items-center justify-center md:min-h-[650px]"
-        >
-          <div
-            class="w-full max-w-[760px] rounded-lg border border-neutral-800 bg-neutral-900 p-2 shadow-[0_28px_80px_rgba(0,0,0,0.35)]"
-          >
-            <div class="overflow-hidden rounded-md bg-neutral-950">
-              <Image
-                alt={screens[0].alt}
-                class="h-auto w-full"
-                priority
-                sizes={studyImageSizes}
-                src={screens[0].src}
-                widths={studyImageWidths}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mx-auto max-w-7xl px-5 py-16 md:px-8">
-      <div class="grid gap-14">
-        {screens.map((screen) => (
-          <article class="grid gap-8 pt-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
-            <div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400">{screen.kicker}</p>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-neutral-50">
-                {screen.title}
-              </h2>
-              <p class="mt-4 max-w-md text-base leading-7 text-neutral-300">
-                {screen.body}
-              </p>
-            </div>
-            <div class="mx-auto w-full max-w-[860px] md:justify-self-end">
-              <div class="rounded-lg border border-neutral-800 bg-neutral-900 p-2 shadow-[0_28px_80px_rgba(0,0,0,0.35)]">
-                <div class="overflow-hidden rounded-md bg-neutral-950">
-                  <Image
-                    alt={screen.alt}
-                    class="h-auto w-full"
-                    sizes={studyImageSizes}
-                    src={screen.src}
-                    widths={studyImageWidths}
-                  />
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
+        <Image
+          alt="Study Lens showing a question paper screenshot and a model answer"
+          class="h-auto w-full"
+          priority
+          sizes={studyImageSizes}
+          src={studyLensContent}
+          widths={studyImageWidths}
+        />
       </div>
 
-      <div class="mt-16 border-t border-neutral-800 pt-12">
-        <div class="mb-8 flex items-end justify-between gap-6">
+      <div class="border-neutral-200 border-t py-14 dark:border-neutral-800">
+        <div class="grid gap-10 md:grid-cols-[0.72fr_1.28fr]">
           <div>
             <p
-              class="text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400"
+              class="font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
             >
               system shape
             </p>
             <h2
-              class="mt-3 text-3xl font-semibold tracking-tight text-neutral-50"
+              class="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100"
             >
               from capture to explanation
             </h2>
           </div>
-          <div
-            class="hidden items-center gap-2 text-sm text-neutral-500 md:flex"
-          >
-            <ShowcaseIcon name="camera" class="h-4 w-4" />
-            screenshot-first workflow
-          </div>
-        </div>
 
-        <div class="grid gap-3 md:grid-cols-4">
-          {flow.map((item) => (
-            <div class="rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-sm">
-              <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-md border border-neutral-700 bg-neutral-800/60 text-neutral-300">
-                <ShowcaseIcon name={item.icon} class="h-4 w-4" />
+          <div class="grid gap-x-8 gap-y-10 md:grid-cols-2">
+            {flow.map((item) => (
+              <div class="border-neutral-200 border-t pt-4 dark:border-neutral-800">
+                <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
+                  <ShowcaseIcon name={item.icon} class="h-4 w-4" />
+                  <h3 class="text-sm font-semibold">{item.label}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">
+                  {item.body}
+                </p>
               </div>
-              <h3 class="text-sm font-semibold text-neutral-100">
-                {item.label}
-              </h3>
-              <p class="mt-2 text-sm leading-6 text-neutral-400">
-                {item.body}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

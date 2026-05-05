@@ -4,6 +4,7 @@ import homeScreen from "../../assets/taptm/01-home.png";
 import profileScreen from "../../assets/taptm/02-profile.png";
 import propertyScreen from "../../assets/taptm/03-property-detail.png";
 import accountScreen from "../../assets/taptm/04-view-account.png";
+import ShowcaseIcon from "../../components/ShowcaseIcons.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const stack = [
@@ -16,7 +17,7 @@ const stack = [
 ];
 
 const phoneImageSizes =
-  "(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw";
+  "(min-width: 1280px) 320px, (min-width: 768px) 28vw, 76vw";
 const phoneImageWidths = [240, 320, 420, 560, 720, 960];
 
 const screens = [
@@ -54,15 +55,25 @@ const screens = [
 <BaseLayout
   title="tap.tm showcase"
   description="tap.tm mobile real-estate app showcase"
+  showNavbar={false}
   variant="showcase"
 >
+  <a
+    aria-label="back to portfolio"
+    class="absolute top-5 left-5 z-50 inline-grid grid-cols-[1rem_auto] items-center gap-2 text-xs leading-none text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100 md:top-8 md:left-8 md:text-sm"
+    href="/"
+  >
+    <ShowcaseIcon name="arrow-left" class="h-4 w-4" />
+    <span class="block leading-none">portfolio</span>
+  </a>
+
   <section
-    class="overflow-hidden bg-[#f7f3eb] text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50"
+    class="overflow-hidden bg-white text-neutral-950 dark:bg-black dark:text-neutral-50"
     data-showcase-page
   >
     <div class="border-b border-neutral-200 dark:border-neutral-800">
       <div
-        class="mx-auto grid min-h-[760px] max-w-7xl grid-cols-1 gap-10 px-5 py-10 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-8 lg:py-14"
+        class="mx-auto grid min-h-[760px] max-w-7xl grid-cols-1 gap-10 px-5 pt-24 pb-10 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-8 md:py-10 lg:py-14"
       >
         <div class="max-w-xl">
           <p
@@ -84,7 +95,7 @@ const screens = [
           </p>
 
           <div
-            class="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-l border-neutral-800/70 pl-4 text-sm text-neutral-500 dark:border-neutral-700"
+            class="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-neutral-800/70 border-l pl-4 text-neutral-500 text-sm dark:border-neutral-700"
           >
             <span>multi-step property creation</span>
             <span>advanced listing filters</span>
@@ -93,16 +104,16 @@ const screens = [
 
           <div class="mt-7 flex flex-wrap gap-2">
             {stack.map((item) => (
-              <span class="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+              <span class="rounded-md border border-neutral-300 bg-white px-3 py-1.5 font-medium text-neutral-700 text-xs shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
                 {item}
               </span>
             ))}
           </div>
         </div>
 
-        <div class="relative min-h-[620px] md:min-h-[720px]">
+        <div class="relative min-h-[520px] sm:min-h-[600px] md:min-h-[720px]">
           <div
-            class="absolute left-[3%] top-[15%] hidden w-[33%] rotate-[-7deg] opacity-95 sm:block"
+            class="absolute top-[14%] left-[3%] w-[38%] max-w-[165px] rotate-[10deg] opacity-95 sm:max-w-[220px] md:top-[10%] md:w-[33%] md:max-w-none md:rotate-[-7deg]"
           >
             <div
               class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]"
@@ -118,7 +129,9 @@ const screens = [
               </div>
             </div>
           </div>
-          <div class="absolute right-[2%] top-[4%] w-[54%] max-w-[360px]">
+          <div
+            class="absolute top-[4%] right-[1%] w-[43%] max-w-[190px] rotate-[-16deg] sm:max-w-[250px] md:top-0 md:right-[2%] md:w-[54%] md:max-w-[360px] md:rotate-0"
+          >
             <div
               class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]"
             >
@@ -135,7 +148,7 @@ const screens = [
             </div>
           </div>
           <div
-            class="absolute bottom-[2%] left-[19%] w-[48%] max-w-[330px] rotate-[4deg]"
+            class="absolute top-[28%] left-[28%] w-[44%] max-w-[195px] rotate-[6deg] sm:max-w-[250px] md:top-auto md:bottom-[8%] md:left-[19%] md:w-[48%] md:max-w-[330px] md:rotate-[4deg]"
           >
             <div
               class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]"
@@ -158,12 +171,16 @@ const screens = [
     <div class="mx-auto max-w-7xl px-5 py-16 md:px-8">
       <div class="grid gap-14">
         {screens.map((screen, index) => (
-          <article class:list={[
-            'grid gap-8 pt-10 md:grid-cols-[0.8fr_1.2fr] md:items-center',
-            index === 0 ? '' : 'border-t border-neutral-200 dark:border-neutral-800',
-          ]}>
+          <article
+            class:list={[
+              'grid gap-8 pt-10 md:grid-cols-[0.8fr_1.2fr] md:items-center',
+              index === 0 ? '' : 'border-neutral-200 border-t dark:border-neutral-800',
+            ]}
+          >
             <div class={index % 2 === 1 ? 'md:order-2' : ''}>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400">{screen.kicker}</p>
+              <p class="font-semibold text-[11px] text-neutral-500 uppercase tracking-[0.22em] dark:text-neutral-400">
+                {screen.kicker}
+              </p>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-50">
                 {screen.title}
               </h2>
@@ -171,10 +188,12 @@ const screens = [
                 {screen.body}
               </p>
             </div>
-            <div class:list={[
-              'mx-auto w-full max-w-[360px]',
-              index % 2 === 1 ? 'md:justify-self-start' : 'md:justify-self-end',
-            ]}>
+            <div
+              class:list={[
+                'mx-auto w-full max-w-[360px]',
+                index % 2 === 1 ? 'md:justify-self-start' : 'md:justify-self-end',
+              ]}
+            >
               <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
                 <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
                   <Image

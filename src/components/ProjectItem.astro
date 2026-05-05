@@ -16,6 +16,7 @@ const isClickable = Boolean(href);
     showcase && 'project-item-showcase',
     isClickable && 'project-item-clickable',
   ]}
+  data-project-item
 >
   {href && (
     <a
@@ -38,3 +39,77 @@ const isClickable = Boolean(href);
     <slot />
   </div>
 </div>
+
+<script>
+  const setupMobileProjectMotion = () => {
+    const items = Array.from(document.querySelectorAll("[data-project-item]"));
+
+    if (!items.length) {
+      return;
+    }
+
+    const mobileMotionQuery = window.matchMedia(
+      "(hover: none), (pointer: coarse)"
+    );
+    let cleanupHandlers: Array<() => void> = [];
+
+    const teardown = () => {
+      for (const cleanup of cleanupHandlers) {
+        cleanup();
+      }
+      cleanupHandlers = [];
+
+      for (const item of items) {
+        item.classList.remove("is-mobile-pressed");
+      }
+    };
+
+    const apply = () => {
+      teardown();
+
+      if (!mobileMotionQuery.matches) {
+        return;
+      }
+
+      for (const item of items) {
+        let releaseTimer: number | undefined;
+
+        const press = () => {
+          window.clearTimeout(releaseTimer);
+          item.classList.add("is-mobile-pressed");
+        };
+
+        const release = () => {
+          window.clearTimeout(releaseTimer);
+          releaseTimer = window.setTimeout(() => {
+            item.classList.remove("is-mobile-pressed");
+          }, 520);
+        };
+
+        item.addEventListener("pointerdown", press, { passive: true });
+        item.addEventListener("pointerup", release, { passive: true });
+        item.addEventListener("pointercancel", release, { passive: true });
+        item.addEventListener("pointerleave", release, { passive: true });
+
+        cleanupHandlers.push(() => {
+          window.clearTimeout(releaseTimer);
+          item.removeEventListener("pointerdown", press);
+          item.removeEventListener("pointerup", release);
+          item.removeEventListener("pointercancel", release);
+          item.removeEventListener("pointerleave", release);
+        });
+      }
+    };
+
+    apply();
+    mobileMotionQuery.addEventListener("change", apply);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupMobileProjectMotion, {
+      once: true,
+    });
+  } else {
+    setupMobileProjectMotion();
+  }
+</script>

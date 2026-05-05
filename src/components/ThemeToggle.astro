@@ -4,19 +4,22 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
 <button
   type="button"
-  class="group/theme m-1 inline-flex h-7 items-center gap-1.5 px-2 font-mono text-[11px] leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
+  class="group/theme m-1 inline-flex h-9 origin-right items-center justify-end gap-2 px-3 font-mono text-xs leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
   data-theme-toggle
-  aria-label="switch to dark mode"
+  aria-label="toggle color mode"
   title="toggle theme"
 >
+  <span class="theme-toggle-label" aria-hidden="true">
+    <span class="theme-toggle-label-dark">dark</span>
+    <span class="theme-toggle-label-light">light</span>
+  </span>
   <span
     aria-hidden="true"
     class="theme-toggle-icon-shell"
     data-theme-icon-shell
   >
-    <SunMoon class="theme-toggle-icon h-3.5 w-3.5" />
+    <SunMoon class="theme-toggle-icon h-4.5 w-4.5" />
   </span>
-  <span data-theme-label>dark</span>
 </button>
 
 <script>
@@ -24,6 +27,10 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
   const themeIconShell = themeToggle?.querySelector("[data-theme-icon-shell]");
   const root = document.documentElement;
   const themeModeKey = "theme-mode";
+  const reducedMotionQuery = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+  let themeTransitionTimer: number | undefined;
 
   localStorage.removeItem("theme");
   localStorage.removeItem("theme-preference");
@@ -32,6 +39,19 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
   const getCurrentTheme = () =>
     root.classList.contains("dark") ? "dark" : "light";
   let themeRotation = getCurrentTheme() === "dark" ? 180 : 0;
+
+  const startThemeTransition = () => {
+    if (reducedMotionQuery.matches) {
+      return;
+    }
+
+    window.clearTimeout(themeTransitionTimer);
+    root.classList.add("theme-transitioning");
+    root.getBoundingClientRect();
+    themeTransitionTimer = window.setTimeout(() => {
+      root.classList.remove("theme-transitioning");
+    }, 620);
+  };
 
   const rotateThemeIcon = () => {
     if (!(themeIconShell instanceof HTMLElement)) {
@@ -52,11 +72,11 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
     const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
     themeToggle.setAttribute("aria-label", `switch to ${nextTheme} mode`);
-    themeToggle.querySelector("[data-theme-label]")?.replaceChildren(nextTheme);
   };
 
   themeToggle?.addEventListener("click", () => {
     const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    startThemeTransition();
     rotateThemeIcon();
     root.classList.toggle("dark", nextTheme === "dark");
     localStorage.setItem(themeModeKey, nextTheme);
@@ -70,6 +90,7 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
         return;
       }
 
+      startThemeTransition();
       root.classList.toggle("dark", event.matches);
       themeRotation = event.matches ? 180 : 0;
       themeIconShell?.removeAttribute("style");
@@ -80,6 +101,30 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 </script>
 
 <style is:global>
+  .theme-toggle-label {
+    display: inline-grid;
+    flex: 0 0 2.65rem;
+    width: 2.65rem;
+    text-align: right;
+  }
+
+  .theme-toggle-label > span {
+    grid-area: 1 / 1;
+    justify-self: end;
+  }
+
+  .theme-toggle-label-light {
+    visibility: hidden;
+  }
+
+  html.dark .theme-toggle-label-dark {
+    visibility: hidden;
+  }
+
+  html.dark .theme-toggle-label-light {
+    visibility: visible;
+  }
+
   .theme-toggle-icon-shell {
     display: inline-flex;
     transform: rotate(var(--theme-toggle-rotation, 0deg));

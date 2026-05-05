@@ -56,12 +56,14 @@ html.dark {
   height: 0;
   background-color: var(--project-line);
   transition: height 0.3s ease-out;
+  will-change: height;
 }
 
 .project-item-x {
   width: 0;
   background-color: var(--project-line);
   transition: width 0.6s ease-out;
+  will-change: width;
 }
 
 .project-item:hover .project-item-y,
@@ -123,6 +125,86 @@ html.dark {
 html.dark .project-item-showcase:hover .project-showcase-link,
 html.dark .project-item-showcase:focus-within .project-showcase-link {
   color: rgb(229 229 229);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .project-item.is-mobile-pressed .project-item-y,
+  .project-item:active .project-item-y {
+    height: calc(100% + 1rem);
+  }
+
+  .project-item.is-mobile-pressed .project-item-x,
+  .project-item:active .project-item-x {
+    width: calc(100% + 1rem);
+  }
+
+  .project-item-showcase.is-mobile-pressed .project-showcase-link,
+  .project-item-showcase:active .project-showcase-link {
+    color: rgb(38 38 38);
+  }
+
+  .project-item-showcase.is-mobile-pressed
+    .project-showcase-link
+    [data-showcase-arrow],
+  .project-item-showcase:active .project-showcase-link [data-showcase-arrow] {
+    transform: translateX(0.125rem);
+  }
+
+  html.dark .project-item-showcase.is-mobile-pressed .project-showcase-link,
+  html.dark .project-item-showcase:active .project-showcase-link {
+    color: rgb(229 229 229);
+  }
+}
+
+.showcase-phone-fan {
+  position: relative;
+  min-height: clamp(18rem, 39vw, 28rem);
+  overflow: visible;
+}
+
+.showcase-phone {
+  position: relative;
+  padding: 0.45rem;
+  background: linear-gradient(145deg, rgb(38 38 38), rgb(0 0 0));
+  border-radius: 2rem;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-phone-fan .showcase-phone {
+  padding: clamp(0.28rem, 0.65vw, 0.45rem);
+  border-radius: clamp(1.25rem, 3vw, 2rem);
+}
+
+.showcase-phone::before {
+  position: absolute;
+  top: 0.82rem;
+  left: 50%;
+  z-index: 2;
+  width: 32%;
+  height: 0.42rem;
+  content: "";
+  background: rgb(10 10 10);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.showcase-phone::after {
+  position: absolute;
+  inset: 0.34rem;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.62rem;
+}
+
+.showcase-phone-screen {
+  overflow: hidden;
+  background: rgb(245 245 245);
+  border-radius: 1.55rem;
+}
+
+.showcase-phone-screen img {
+  display: block;
 }
 
 .prose .anchor {
@@ -259,6 +341,35 @@ table {
 
   .project-item-y,
   .project-item-x {
+    transition: none;
+  }
+}
+
+html.theme-transitioning,
+html.theme-transitioning body,
+html.theme-transitioning body * {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 560ms;
+  transition-property:
+    background-color, border-color, box-shadow, color, fill, outline-color,
+    stroke, text-decoration-color;
+}
+
+html.theme-transitioning .theme-toggle-icon-shell {
+  transition: transform 560ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html.theme-transitioning .theme-toggle-icon,
+html.theme-transitioning .theme-toggle-icon > * {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 560ms;
+  transition-property: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transitioning,
+  html.theme-transitioning body,
+  html.theme-transitioning body * {
     transition: none;
   }
 }

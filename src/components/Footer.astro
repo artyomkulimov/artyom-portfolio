@@ -1,6 +1,4 @@
 ---
-import ArrowUpRight from "@lucide/astro/icons/arrow-up-right";
-
 interface Props {
   variant?: "default" | "showcase";
 }
@@ -12,7 +10,8 @@ const year = new Date().getFullYear();
 <footer
   class:list={[
   'mb-16',
-  variant === 'showcase' && 'mx-auto w-full max-w-7xl px-5 pt-8 md:px-8',
+  variant === 'showcase' &&
+    'mx-auto w-full max-w-7xl bg-white px-5 pt-8 dark:bg-black md:px-8',
 ]}
 >
   <ul
@@ -20,24 +19,54 @@ const year = new Date().getFullYear();
   >
     <li>
       <a
-        class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+        class="footer-link flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
         aria-label="artyom kulimov github profile"
         rel="noopener noreferrer"
         target="_blank"
         href="https://github.com/artyomkulimov/"
       >
-        <ArrowUpRight aria-hidden="true" class="h-3 w-3" />
+        <svg
+          aria-hidden="true"
+          class="footer-arrow-icon h-3.5 w-3.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <g class="footer-arrow-group">
+            <path d="M7 7h10"></path>
+            <path d="M17 7v10"></path>
+            <path d="M7 17 17 7"></path>
+          </g>
+        </svg>
         <p class="ml-2 h-7">github</p>
       </a>
     </li>
     <li>
       <a
-        class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+        class="footer-link flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
         rel="noopener noreferrer"
         target="_blank"
         href="https://github.com/artyomkulimov/artyom-portfolio"
       >
-        <ArrowUpRight aria-hidden="true" class="h-3 w-3" />
+        <svg
+          aria-hidden="true"
+          class="footer-arrow-icon h-3.5 w-3.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <g class="footer-arrow-group">
+            <path d="M7 7h10"></path>
+            <path d="M17 7v10"></path>
+            <path d="M7 17 17 7"></path>
+          </g>
+        </svg>
         <p class="ml-2 h-7">view source</p>
       </a>
     </li>
@@ -46,3 +75,36 @@ const year = new Date().getFullYear();
     &copy; {year} artyom kulimov
   </p>
 </footer>
+
+<style is:global>
+  .footer-arrow-icon {
+    overflow: visible;
+  }
+
+  .footer-arrow-group {
+    transform-origin: 17px 7px;
+  }
+
+  .footer-link:hover .footer-arrow-group,
+  .footer-link:focus-visible .footer-arrow-group {
+    animation: footerArrowUpRight 500ms ease-in-out;
+  }
+
+  @keyframes footerArrowUpRight {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate(-4px, 4px) scale(0.85);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-link:hover .footer-arrow-group,
+    .footer-link:focus-visible .footer-arrow-group {
+      animation: none;
+    }
+  }
+</style>

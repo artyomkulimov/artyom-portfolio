@@ -1,4 +1,6 @@
 ---
+import geistLatinFont from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import geistMonoLatinFont from "@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
@@ -6,12 +8,14 @@ import "../styles/global.css";
 
 interface Props {
   description?: string;
+  showNavbar?: boolean;
   title?: string;
   variant?: "default" | "showcase";
 }
 
 const {
   description = "developer",
+  showNavbar = true,
   title = "artyom",
   variant = "default",
 } = Astro.props;
@@ -44,6 +48,20 @@ const ogImageUrl = new URL("/og.png", site).toString();
       content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     >
     <link rel="canonical" href={canonicalUrl}>
+    <link
+      rel="preload"
+      href={geistLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    >
+    <link
+      rel="preload"
+      href={geistMonoLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    >
     <link rel="icon" type="image/svg+xml" href="/icon.svg">
     <link rel="apple-touch-icon" href="/icon-192.png">
     <meta property="og:title" content={pageTitle}>
@@ -67,17 +85,18 @@ const ogImageUrl = new URL("/og.png", site).toString();
     class:list={[
     'antialiased',
     variant === 'showcase'
-      ? 'mx-0 mt-8 max-w-none'
+      ? ['mx-0 max-w-none', showNavbar && 'mt-8']
       : 'mx-4 mt-8 max-w-xl lg:mx-auto',
   ]}
   >
     <main
       class:list={[
-      'flex-auto min-w-0 mt-6 flex flex-col',
+      'flex-auto min-w-0 flex flex-col',
+      variant === 'showcase' ? showNavbar && 'mt-6' : 'mt-10',
       variant === 'showcase' ? 'px-0' : 'px-2 md:px-0',
     ]}
     >
-      <Navbar variant={variant} />
+      {showNavbar && <Navbar variant={variant} />}
       <slot />
       <Footer variant={variant} />
       <SpeedInsights />
