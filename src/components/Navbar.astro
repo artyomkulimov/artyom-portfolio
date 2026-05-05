@@ -1,12 +1,12 @@
 ---
-import ShowcaseIcon from './ShowcaseIcons.astro';
+import ShowcaseIcon from "./ShowcaseIcons.astro";
 
 interface Props {
-  variant?: 'default' | 'showcase';
+  variant?: "default" | "showcase";
 }
 
-const { variant = 'default' } = Astro.props;
-const navItems = [{ href: '/', name: 'home' }];
+const { variant = "default" } = Astro.props;
+const navItems = [{ href: "/", name: "home" }];
 ---
 
 {variant === 'showcase' ? (

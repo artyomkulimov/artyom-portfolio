@@ -3,8 +3,8 @@
 @import "tailwindcss";
 
 ::selection {
-  background-color: #47a3f3;
   color: #fefefe;
+  background-color: #47a3f3;
 }
 
 :root {
@@ -65,12 +65,12 @@ html {
 }
 
 .prose .anchor {
-  @apply absolute invisible no-underline;
-  margin-left: -1em;
-  padding-right: 0.5em;
   width: 80%;
   max-width: 700px;
+  padding-right: 0.5em;
+  margin-left: -1em;
   cursor: pointer;
+  @apply absolute invisible no-underline;
 }
 
 .anchor:hover {
@@ -82,8 +82,8 @@ html {
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
   content: "#";
+  @apply text-neutral-300 dark:text-neutral-700;
 }
 
 .prose *:hover > .anchor {
@@ -99,9 +99,9 @@ html {
 }
 
 .prose pre code {
-  @apply p-0;
-  border: initial;
   line-height: 1.5;
+  border: initial;
+  @apply p-0;
 }
 
 .prose code span {
@@ -160,8 +160,8 @@ pre {
 
 input[type="text"],
 input[type="email"] {
-  -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-appearance: none;
   appearance: none;
 }
 

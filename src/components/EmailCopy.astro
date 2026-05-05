@@ -1,5 +1,5 @@
 ---
-const email = 'artyomkulimov@gmail.com';
+const email = "artyomkulimov@gmail.com";
 ---
 
 <button
@@ -14,30 +14,36 @@ const email = 'artyomkulimov@gmail.com';
 </button>
 
 <script>
-  const copyButtons = document.querySelectorAll('[data-email-copy]');
+  const copyButtons = document.querySelectorAll("[data-email-copy]");
 
-  copyButtons.forEach((button) => {
-    if (!(button instanceof HTMLButtonElement)) return;
+  for (const button of copyButtons) {
+    if (!(button instanceof HTMLButtonElement)) {
+      continue;
+    }
 
-    const label = button.textContent || 'email';
-    const email = button.dataset.email || '';
+    const label = button.textContent || "email";
+    const email = button.dataset.email || "";
     let timeoutId: number | undefined;
 
-    button.addEventListener('click', async () => {
+    button.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(email);
-        button.textContent = 'copied';
-        if (timeoutId) window.clearTimeout(timeoutId);
+        button.textContent = "copied";
+        if (timeoutId) {
+          window.clearTimeout(timeoutId);
+        }
         timeoutId = window.setTimeout(() => {
           button.textContent = label;
         }, 1200);
       } catch {
-        button.textContent = 'error';
-        if (timeoutId) window.clearTimeout(timeoutId);
+        button.textContent = "error";
+        if (timeoutId) {
+          window.clearTimeout(timeoutId);
+        }
         timeoutId = window.setTimeout(() => {
           button.textContent = label;
         }, 1200);
       }
     });
-  });
+  }
 </script>

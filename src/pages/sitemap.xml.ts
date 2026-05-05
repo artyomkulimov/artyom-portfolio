@@ -1,20 +1,23 @@
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
-const routes = ['/', '/showcase/taptm', '/showcase/study-lens'];
+const routes = ["/", "/showcase/taptm", "/showcase/study-lens"];
 
 export const GET: APIRoute = () => {
   const site = import.meta.env.SITE;
-  const lastModified = new Date().toISOString().split('T')[0];
+  const lastModified = new Date().toISOString().split("T")[0];
   const urls = routes
     .map((route) => {
       const url = new URL(route, site).toString();
       return `<url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`;
     })
-    .join('');
+    .join("");
 
-  return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-    },
-  });
+  return new Response(
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`,
+    {
+      headers: {
+        "Content-Type": "application/xml; charset=utf-8",
+      },
+    }
+  );
 };

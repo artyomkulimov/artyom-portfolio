@@ -1,11 +1,4 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check"
-  },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/vercel": "^10.0.6",
@@ -17,5 +10,17 @@
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3"
   },
-  "type": "module"
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "ultracite": "7.6.3"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
+  "type": "module",
+  "private": true
 }
