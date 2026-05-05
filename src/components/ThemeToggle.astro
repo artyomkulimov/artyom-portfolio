@@ -1,51 +1,49 @@
+---
+import SunMoon from "@lucide/astro/icons/sun-moon";
+---
+
 <button
   type="button"
-  class="fixed top-4 right-4 z-50 inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white/85 text-neutral-700 shadow-sm backdrop-blur transition-colors hover:border-neutral-500 hover:text-neutral-950 dark:border-neutral-700 dark:bg-neutral-950/85 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-white"
+  class="group/theme m-1 inline-flex h-7 items-center gap-1.5 px-2 font-mono text-[11px] leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
   data-theme-toggle
   aria-label="switch to dark mode"
   title="toggle theme"
 >
-  <svg
+  <span
     aria-hidden="true"
-    class="h-4 w-4 dark:hidden"
-    fill="none"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="2"
-    viewBox="0 0 24 24"
+    class="theme-toggle-icon-shell"
+    data-theme-icon-shell
   >
-    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9" />
-  </svg>
-  <svg
-    aria-hidden="true"
-    class="hidden h-4 w-4 dark:block"
-    fill="none"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="2"
-    viewBox="0 0 24 24"
-  >
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2" />
-    <path d="M12 20v2" />
-    <path d="m4.93 4.93 1.41 1.41" />
-    <path d="m17.66 17.66 1.41 1.41" />
-    <path d="M2 12h2" />
-    <path d="M20 12h2" />
-    <path d="m6.34 17.66-1.41 1.41" />
-    <path d="m19.07 4.93-1.41 1.41" />
-  </svg>
+    <SunMoon class="theme-toggle-icon h-3.5 w-3.5" />
+  </span>
+  <span data-theme-label>dark</span>
 </button>
 
 <script>
   const themeToggle = document.querySelector("[data-theme-toggle]");
+  const themeIconShell = themeToggle?.querySelector("[data-theme-icon-shell]");
   const root = document.documentElement;
+  const themeModeKey = "theme-mode";
 
-  const getStoredTheme = () => localStorage.getItem("theme");
+  localStorage.removeItem("theme");
+  localStorage.removeItem("theme-preference");
+
+  const getStoredTheme = () => localStorage.getItem(themeModeKey);
   const getCurrentTheme = () =>
     root.classList.contains("dark") ? "dark" : "light";
+  let themeRotation = getCurrentTheme() === "dark" ? 180 : 0;
+
+  const rotateThemeIcon = () => {
+    if (!(themeIconShell instanceof HTMLElement)) {
+      return;
+    }
+
+    themeRotation += 180;
+    themeIconShell.style.setProperty(
+      "--theme-toggle-rotation",
+      `${themeRotation}deg`
+    );
+  };
 
   const syncThemeButton = () => {
     if (!(themeToggle instanceof HTMLButtonElement)) {
@@ -54,12 +52,14 @@
 
     const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
     themeToggle.setAttribute("aria-label", `switch to ${nextTheme} mode`);
+    themeToggle.querySelector("[data-theme-label]")?.replaceChildren(nextTheme);
   };
 
   themeToggle?.addEventListener("click", () => {
     const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    rotateThemeIcon();
     root.classList.toggle("dark", nextTheme === "dark");
-    localStorage.setItem("theme", nextTheme);
+    localStorage.setItem(themeModeKey, nextTheme);
     syncThemeButton();
   });
 
@@ -71,8 +71,83 @@
       }
 
       root.classList.toggle("dark", event.matches);
+      themeRotation = event.matches ? 180 : 0;
+      themeIconShell?.removeAttribute("style");
       syncThemeButton();
     });
 
   syncThemeButton();
 </script>
+
+<style is:global>
+  .theme-toggle-icon-shell {
+    display: inline-flex;
+    transform: rotate(var(--theme-toggle-rotation, 0deg));
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html.dark .theme-toggle-icon-shell {
+    --theme-toggle-rotation: 180deg;
+  }
+
+  .theme-toggle-icon {
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .theme-toggle-icon > * {
+    transform-origin: center;
+    transform-box: fill-box;
+    transition:
+      opacity 220ms ease,
+      transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group\/theme:hover .theme-toggle-icon {
+    transform: rotate(-10deg);
+  }
+
+  .group\/theme:active .theme-toggle-icon {
+    transform: rotate(8deg) scale(0.9);
+  }
+
+  .theme-toggle-icon > :nth-child(1),
+  .theme-toggle-icon > :nth-child(4),
+  .theme-toggle-icon > :nth-child(5) {
+    opacity: 0.65;
+  }
+
+  .theme-toggle-icon > :nth-child(2) {
+    transform: scale(0.92);
+  }
+
+  html.dark .group\/theme:hover .theme-toggle-icon {
+    transform: rotate(10deg);
+  }
+
+  html.dark .group\/theme:active .theme-toggle-icon {
+    transform: rotate(18deg) scale(0.9);
+  }
+
+  html.dark .theme-toggle-icon > :nth-child(1),
+  html.dark .theme-toggle-icon > :nth-child(4),
+  html.dark .theme-toggle-icon > :nth-child(5) {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  html.dark .theme-toggle-icon > :nth-child(2) {
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-icon-shell,
+    .theme-toggle-icon,
+    .theme-toggle-icon > * {
+      transition: none;
+    }
+  }
+</style>

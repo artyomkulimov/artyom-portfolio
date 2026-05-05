@@ -70,6 +70,57 @@ html.dark {
   width: calc(100% + 1rem);
 }
 
+.project-item-showcase .project-item-y {
+  height: 0.9rem;
+}
+
+.project-item-showcase .project-item-x {
+  width: 0.9rem;
+}
+
+.project-item-showcase:hover .project-item-y,
+.project-item-showcase:focus-within .project-item-y {
+  height: calc(100% + 1rem);
+}
+
+.project-item-showcase:hover .project-item-x,
+.project-item-showcase:focus-within .project-item-x {
+  width: calc(100% + 1rem);
+}
+
+.project-item-clickable a:not(.project-item-hit-area),
+.project-item-clickable button {
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.project-showcase-link {
+  transition: color 0.2s ease;
+}
+
+.project-showcase-link [data-showcase-arrow] {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.project-item-showcase:hover .project-showcase-link,
+.project-item-showcase:focus-within .project-showcase-link {
+  color: rgb(38 38 38);
+}
+
+.project-item-showcase:hover .project-showcase-link [data-showcase-arrow],
+.project-item-showcase:focus-within
+  .project-showcase-link
+  [data-showcase-arrow] {
+  transform: translateX(0.125rem);
+}
+
+html.dark .project-item-showcase:hover .project-showcase-link,
+html.dark .project-item-showcase:focus-within .project-showcase-link {
+  color: rgb(229 229 229);
+}
+
 .prose .anchor {
   width: 80%;
   max-width: 700px;

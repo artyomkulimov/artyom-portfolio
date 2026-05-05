@@ -84,90 +84,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           />
         </ProjectItem>
 
-        <ProjectItem>
-          <a
-            href="/showcase/study-lens"
-            class="block cursor-grab active:cursor-grabbing"
-          >
-            <div class="mb-1 flex items-center gap-2">
+        <ProjectItem
+          ariaLabel="open study lens showcase"
+          href="/showcase/study-lens"
+          showcase
+        >
+          <div class="mb-2 flex items-start justify-between gap-4">
+            <div class="min-w-0">
               <h3
-                class="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white"
+                class="font-medium text-neutral-800 transition-colors group-hover:text-neutral-950 dark:text-neutral-200 dark:group-hover:text-white"
               >
                 study lens
               </h3>
-              <span
-                class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
-              >
-                showcase
-              </span>
+              <p class="mt-1 text-xs text-neutral-600 dark:text-neutral-400">
+                private prototype
+              </p>
             </div>
-            <p class="mb-3 text-xs text-neutral-600 dark:text-neutral-400">
-              private prototype
-            </p>
-            <p
-              class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300"
+            <span
+              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-500 dark:text-neutral-500"
             >
-              ai study companion that turns screenshots into guided feedback for
-              reviewing problems, checking reasoning, and understanding
-              mistakes. built with a python desktop hotkey agent, websocket
-              relay, and next.js chat ui.
-            </p>
-            <SkillTags
-              skills={[
-                'desktop automation',
-                'websocket architecture',
-                'multimodal ai',
-                'python + next.js integration',
-              ]}
-            />
-          </a>
+              showcase
+              <span aria-hidden="true" data-showcase-arrow>-&gt;</span>
+            </span>
+          </div>
+          <p
+            class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300"
+          >
+            ai study companion that turns screenshots into guided feedback for
+            reviewing problems, checking reasoning, and understanding mistakes.
+            built with a python desktop hotkey agent, websocket relay, and
+            next.js chat ui.
+          </p>
+          <SkillTags
+            skills={[
+              'desktop automation',
+              'websocket architecture',
+              'multimodal ai',
+              'python + next.js integration',
+            ]}
+          />
         </ProjectItem>
 
-        <ProjectItem>
-          <div class="mb-1 flex items-center gap-2">
-            <a
-              href="/showcase/taptm"
-              class="inline-flex cursor-grab items-center gap-2 active:cursor-grabbing"
-            >
+        <ProjectItem
+          ariaLabel="open tap.tm showcase"
+          href="/showcase/taptm"
+          showcase
+        >
+          <div class="mb-2 flex items-start justify-between gap-4">
+            <div class="min-w-0">
               <h3
-                class="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white"
+                class="font-medium text-neutral-800 transition-colors group-hover:text-neutral-950 dark:text-neutral-200 dark:group-hover:text-white"
               >
                 tap.tm
               </h3>
-              <span
-                class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+              <a
+                href="https://github.com/artyomkulimov/tap.tm"
+                class="mt-1 block text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
               >
-                showcase
-              </span>
-            </a>
-            <a
-              href="https://github.com/artyomkulimov/tap.tm"
-              class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                github
+              </a>
+            </div>
+            <span
+              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-500 dark:text-neutral-500"
             >
-              github
-            </a>
+              showcase
+              <span aria-hidden="true" data-showcase-arrow>-&gt;</span>
+            </span>
           </div>
-          <a
-            href="/showcase/taptm"
-            class="block cursor-grab active:cursor-grabbing"
+          <p
+            class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300"
           >
-            <p
-              class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300"
-            >
-              real-estate mobile app built with expo router and react native,
-              with kinde auth, property search/filtering, saved listings, image
-              uploads, and a multi-step posting flow. built with three-language
-              i18n for english, russian, and turkmen.
-            </p>
-            <SkillTags
-              skills={[
-                'expo router',
-                'kinde auth',
-                'i18n (en/ru/tk)',
-                'property flows',
-              ]}
-            />
-          </a>
+            real-estate mobile app built with expo router and react native, with
+            kinde auth, property search/filtering, saved listings, image
+            uploads, and a multi-step posting flow. built with three-language
+            i18n for english, russian, and turkmen.
+          </p>
+          <SkillTags
+            skills={[
+              'expo router',
+              'kinde auth',
+              'i18n (en/ru/tk)',
+              'property flows',
+            ]}
+          />
         </ProjectItem>
 
         <ProjectItem>
