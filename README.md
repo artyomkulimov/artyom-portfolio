@@ -21,18 +21,18 @@ My personal portfolio website featuring a minimalist design with an interactive 
 
 ## Projects Showcase
 
-- **ExamVault** - AI-powered revision assistant
-- **SvoiTaxi** - Localized ride-hailing app
-- **Tap.tm** - Real-estate listing app
-- **Transfer Ledger** - Hawala-style transaction tracker
-- **SMAC** - Khalifa University campus app
+- **Invoice Tracker** - Shipment and invoice tracker with auth, admin views, Drizzle/Neon storage, currency calculations, and XLSX exports
+- **Study Lens** - Private AI study companion with screenshot review, a Python desktop hotkey agent, WebSocket relay, and Next.js chat UI
+- **Tap.tm** - Expo Router/React Native real-estate app with Kinde auth, three-language i18n, property search/filtering, saved listings, image uploads, and a multi-step posting flow
+- **SMAC** - Waste-sorting app using a fine-tuned Google Vision model trained from a Hugging Face dataset and hosted for inference on RunPod
+- **Self-hosted Linux Homelab** - Linux server with a 16 TB Sia node, media services, Tailscale VPN, storage, networking, and service management
 
 ## Contact
 
-- GitHub: [github.com/wumpiee](https://github.com/wumpiee)
+- GitHub: [github.com/artyomkulimov](https://github.com/artyomkulimov)
 - Email: artyomkulimov@gmail.com
 - LinkedIn: [linkedin.com/in/artyom-kulimov-7a5032265](https://www.linkedin.com/in/artyom-kulimov-7a5032265/)
-- Discord: wumpiee
+- X: [x.com/artyomkulimov](https://x.com/artyomkulimov)
 
 ## Development
 

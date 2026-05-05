@@ -1,4 +1,7 @@
 import AnimatedProject from './components/animated-project'
+import EmailCopy from './components/email-copy'
+import Link from 'next/link'
+import SkillTags from './components/skill-tags'
 
 export default function Page() {
   return (
@@ -14,18 +17,16 @@ export default function Page() {
           </p>
         </div>
         <div className="mt-4 sm:mt-0 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-          <a href="https://github.com/wumpiee" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
+          <a href="https://github.com/artyomkulimov" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
             github
           </a>
-          <a href="mailto:artyomkulimov@gmail.com" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
-            email
-          </a>
+          <EmailCopy />
           <a href="https://www.linkedin.com/in/artyom-kulimov-7a5032265/" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
             linkedin
             </a> 
-          <div className="text-neutral-600 dark:text-neutral-400">
-            discord: wumpiee
-          </div>
+          <a href="https://x.com/artyomkulimov" className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors">
+            x
+          </a>
         </div>
       </div>
 
@@ -35,37 +36,76 @@ export default function Page() {
         
         <div className="space-y-8">
           <AnimatedProject>
-            <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">examvault mobile app</h3>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">co-founder & head of mobile engineering</p>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="font-medium text-neutral-800 dark:text-neutral-200">invoice tracker</h3>
+              <a href="https://github.com/artyomkulimov/invoicetracker" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors text-xs">
+                github
+              </a>
+            </div>
             <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              developed the mobile app for examvault—ai-powered revision assistant for a-level students. learn where you're weak, get tailored questions, practice smart. 
-              built with next.js, tailwind, drizzle orm, neon db.
+              shipment and invoice tracker built for my dad: tracks GTD records, costs, multi-currency profit, edit history, admin views, and XLSX invoice exports. 
+              built with next.js app router, typescript, workos auth, drizzle orm, neon postgres, tailwind/shadcn ui.
             </p>
+            <SkillTags
+              skills={[
+                'server actions/auth',
+                'database schema design',
+                'currency calculations',
+                'spreadsheet exports',
+              ]}
+            />
+          </AnimatedProject>
+
+          <AnimatedProject>
+            <Link href="/showcase/study-lens" className="block cursor-grab active:cursor-grabbing">
+              <div className="mb-1 flex items-center gap-2">
+                <h3 className="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white">study lens</h3>
+                <span className="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+                  showcase
+                </span>
+              </div>
+              <p className="mb-3 text-xs text-neutral-600 dark:text-neutral-400">private prototype</p>
+              <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                ai study companion that turns screenshots into guided feedback for reviewing problems, checking reasoning, and understanding mistakes. 
+                built with a python desktop hotkey agent, websocket relay, and next.js chat ui.
+              </p>
+              <SkillTags
+                skills={[
+                  'desktop automation',
+                  'websocket architecture',
+                  'multimodal ai',
+                  'python + next.js integration',
+                ]}
+              />
+            </Link>
           </AnimatedProject>
 
           <AnimatedProject>
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-medium text-neutral-800 dark:text-neutral-200">svoitaxi</h3>
-              <span className="px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-400 border border-neutral-300 dark:border-neutral-600 rounded">high-wip</span>
+              <Link href="/showcase/taptm" className="inline-flex cursor-grab items-center gap-2 active:cursor-grabbing">
+                <h3 className="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white">tap.tm</h3>
+                <span className="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+                  showcase
+                </span>
+              </Link>
+              <a href="https://github.com/artyomkulimov/tap.tm" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors text-xs">
+                github
+              </a>
             </div>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              localized ride-hailing app for rostunovo, russia. inspired by yandex go—simple ui, next.js backend, bundled for ios. 
-              targeting small towns, low friction.
-            </p>
-          </AnimatedProject>
-
-          <AnimatedProject>
-            <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">tap.tm</h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              real-estate listing app in react native (expo). clean, intuitive browsing and posting. client project, not deployed yet—screenshots coming soon
-            </p>
-          </AnimatedProject>
-
-          <AnimatedProject>
-            <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">transfer ledger</h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              lightweight hawala-style transaction tracker in next.js. tracks transfers securely and simply.
-            </p>
+            <Link href="/showcase/taptm" className="block cursor-grab active:cursor-grabbing">
+              <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                real-estate mobile app built with expo router and react native, with kinde auth, property search/filtering, saved listings, image uploads, and a multi-step posting flow. 
+                built with three-language i18n for english, russian, and turkmen.
+              </p>
+              <SkillTags
+                skills={[
+                  'expo router',
+                  'kinde auth',
+                  'i18n (en/ru/tk)',
+                  'property flows',
+                ]}
+              />
+            </Link>
           </AnimatedProject>
 
           <AnimatedProject>
@@ -76,14 +116,24 @@ export default function Page() {
               </a>
             </div>
             <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              garbage organization app using ai to detect the correct garbage bin that the item should be put in, tracks saved carbon emissions
+              waste-sorting app that used a fine-tuned google vision model trained on a hugging face dataset and hosted for inference on runpod. 
+              included internationalisation and tracked saved carbon emissions from correct disposal.
             </p>
+            <SkillTags
+              skills={[
+                'computer vision',
+                'hugging face datasets',
+                'runpod inference',
+                'internationalisation',
+              ]}
+            />
           </AnimatedProject>
 
           <AnimatedProject>
-            <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">sia node & media server</h3>
+            <h3 className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">self-hosted linux homelab</h3>
             <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              self-hosted infra project—16 TB siacoin node for passive income + media stack (jellyfin, radarr, sonarr, prowlarr, transmission), all behind tailscale VPN.
+              linux server running a 16 TB siacoin node and private media stack with jellyfin, radarr, sonarr, prowlarr, and transmission. 
+              hands-on with storage, services, networking, ssh, tailscale vpn, and keeping self-hosted apps running.
             </p>
           </AnimatedProject>
         </div>

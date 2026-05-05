@@ -31,6 +31,33 @@
 
 html {
 	min-width: 360px;
+	overflow-x: clip;
+}
+
+body:has([data-showcase-page]) {
+	max-width: none;
+	margin-right: 0;
+	margin-left: 0;
+}
+
+body:has([data-showcase-page]) main {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+body:has([data-showcase-page]) footer {
+	width: 100%;
+	max-width: 80rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 2rem 1.25rem 0;
+}
+
+@media (min-width: 768px) {
+	body:has([data-showcase-page]) footer {
+		padding-right: 2rem;
+		padding-left: 2rem;
+	}
 }
 
 .prose .anchor {
