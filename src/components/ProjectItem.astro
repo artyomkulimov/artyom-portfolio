@@ -20,23 +20,18 @@ const isClickable = Boolean(href);
   {href && (
     <a
       class="project-item-hit-area absolute inset-0 z-10 cursor-grab active:cursor-grabbing"
+      data-astro-prefetch={showcase ? "hover" : undefined}
       href={href}
     >
       <span class="sr-only">{hitAreaLabel}</span>
     </a>
   )}
   <div
-    class:list={[
-      'project-item-y absolute -left-4 -top-2 w-0.5 bg-neutral-800 dark:bg-neutral-200',
-      showcase && 'bg-neutral-500 dark:bg-neutral-600',
-    ]}
+    class="project-item-y absolute -left-4 -top-2 w-0.5"
     aria-hidden="true"
   ></div>
   <div
-    class:list={[
-      'project-item-x absolute -left-4 -top-2 h-0.5 bg-neutral-800 dark:bg-neutral-200',
-      showcase && 'bg-neutral-500 dark:bg-neutral-600',
-    ]}
+    class="project-item-x absolute -left-4 -top-2 h-0.5"
     aria-hidden="true"
   ></div>
   <div class:list={[isClickable && 'pointer-events-none relative z-20']}>

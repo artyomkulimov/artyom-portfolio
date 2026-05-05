@@ -33,6 +33,7 @@ html {
   --border-glow-shadow: rgba(156, 163, 175, 0.1);
   --border-glow-peak: rgb(156 163 175);
   --border-glow-peak-shadow: rgba(156, 163, 175, 0.3);
+  --project-line: rgb(38 38 38);
   min-width: 360px;
   overflow-x: clip;
   color-scheme: light;
@@ -47,17 +48,20 @@ html.dark {
   --border-glow-shadow: rgba(115, 115, 115, 0.1);
   --border-glow-peak: rgb(115 115 115);
   --border-glow-peak-shadow: rgba(115, 115, 115, 0.3);
+  --project-line: rgb(229 229 229);
   color-scheme: dark;
 }
 
 .project-item-y {
   height: 0;
+  background-color: var(--project-line);
   transition: height 0.3s ease-out;
 }
 
 .project-item-x {
   width: 0;
-  transition: width 0.6s ease-out 0.1s;
+  background-color: var(--project-line);
+  transition: width 0.6s ease-out;
 }
 
 .project-item:hover .project-item-y,

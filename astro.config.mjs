@@ -5,6 +5,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://artyomkulimov.com",
   output: "static",
+  prefetch: true,
   adapter: vercel({
     webAnalytics: {
       enabled: true,

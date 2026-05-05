@@ -1,4 +1,5 @@
 ---
+import ChevronRight from "@lucide/astro/icons/chevron-right";
 import EmailCopy from "../components/EmailCopy.astro";
 import ProjectItem from "../components/ProjectItem.astro";
 import SkillTags from "../components/SkillTags.astro";
@@ -23,20 +24,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:mt-0">
         <a
           href="https://github.com/artyomkulimov"
-          class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+          aria-label="artyom kulimov github profile"
+          class="inline-flex min-h-6 items-center text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
         >
           github
         </a>
         <EmailCopy />
         <a
           href="https://www.linkedin.com/in/artyom-kulimov-7a5032265/"
-          class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+          class="inline-flex min-h-6 items-center text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
         >
           linkedin
         </a>
         <a
           href="https://x.com/artyomkulimov"
-          class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+          class="inline-flex min-h-6 items-center text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
         >
           x
         </a>
@@ -61,7 +63,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </h3>
             <a
               href="https://github.com/artyomkulimov/invoicetracker"
-              class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+              aria-label="invoice tracker github repository"
+              class="inline-flex min-h-6 items-center text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
             >
               github
             </a>
@@ -101,10 +104,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               </p>
             </div>
             <span
-              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-500 dark:text-neutral-500"
+              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
             >
               showcase
-              <span aria-hidden="true" data-showcase-arrow>-&gt;</span>
+              <span aria-hidden="true" class="inline-flex" data-showcase-arrow>
+                <ChevronRight class="h-3.5 w-3.5" />
+              </span>
             </span>
           </div>
           <p
@@ -139,16 +144,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               </h3>
               <a
                 href="https://github.com/artyomkulimov/tap.tm"
-                class="mt-1 block text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                aria-label="tap.tm github repository"
+                class="mt-1 inline-flex min-h-6 items-center text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
               >
                 github
               </a>
             </div>
             <span
-              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-500 dark:text-neutral-500"
+              class="project-showcase-link mt-0.5 inline-flex shrink-0 items-center gap-1 font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
             >
               showcase
-              <span aria-hidden="true" data-showcase-arrow>-&gt;</span>
+              <span aria-hidden="true" class="inline-flex" data-showcase-arrow>
+                <ChevronRight class="h-3.5 w-3.5" />
+              </span>
             </span>
           </div>
           <p
@@ -176,7 +184,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </h3>
             <a
               href="https://github.com/danielarbabian/martab"
-              class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+              aria-label="smac khalifa university app github repository"
+              class="inline-flex min-h-6 items-center text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
             >
               github
             </a>
