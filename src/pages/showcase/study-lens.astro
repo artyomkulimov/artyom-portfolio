@@ -36,6 +36,10 @@ const skills = [
   "private prototype",
 ];
 
+const studyImageSizes =
+  "(min-width: 1280px) 760px, (min-width: 768px) 48vw, 92vw";
+const studyImageWidths = [480, 720, 960, 1280, 1600];
+
 const screens = [
   {
     title: "question to answer",
@@ -103,9 +107,10 @@ const screens = [
               <Image
                 alt={screens[0].alt}
                 class="h-auto w-full"
-                loading="eager"
-                sizes="(min-width: 1280px) 560px, (min-width: 768px) 48vw, 92vw"
+                priority
+                sizes={studyImageSizes}
                 src={screens[0].src}
+                widths={studyImageWidths}
               />
             </div>
           </div>
@@ -132,8 +137,9 @@ const screens = [
                   <Image
                     alt={screen.alt}
                     class="h-auto w-full"
-                    sizes="(min-width: 1280px) 560px, (min-width: 768px) 48vw, 92vw"
+                    sizes={studyImageSizes}
                     src={screen.src}
+                    widths={studyImageWidths}
                   />
                 </div>
               </div>

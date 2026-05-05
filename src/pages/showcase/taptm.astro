@@ -15,6 +15,10 @@ const stack = [
   "native plugins",
 ];
 
+const phoneImageSizes =
+  "(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw";
+const phoneImageWidths = [240, 320, 420, 560, 720, 960];
+
 const screens = [
   {
     title: "home feed",
@@ -107,8 +111,9 @@ const screens = [
                 <Image
                   alt={screens[1].alt}
                   class="h-auto w-full"
-                  sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw"
+                  sizes={phoneImageSizes}
                   src={screens[1].src}
+                  widths={phoneImageWidths}
                 />
               </div>
             </div>
@@ -121,9 +126,10 @@ const screens = [
                 <Image
                   alt={screens[0].alt}
                   class="h-auto w-full"
-                  loading="eager"
-                  sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw"
+                  priority
+                  sizes={phoneImageSizes}
                   src={screens[0].src}
+                  widths={phoneImageWidths}
                 />
               </div>
             </div>
@@ -138,8 +144,9 @@ const screens = [
                 <Image
                   alt={screens[2].alt}
                   class="h-auto w-full"
-                  sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw"
+                  sizes={phoneImageSizes}
                   src={screens[2].src}
+                  widths={phoneImageWidths}
                 />
               </div>
             </div>
@@ -170,7 +177,13 @@ const screens = [
             ]}>
               <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
                 <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
-                  <Image alt={screen.alt} class="h-auto w-full" sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw" src={screen.src} />
+                  <Image
+                    alt={screen.alt}
+                    class="h-auto w-full"
+                    sizes={phoneImageSizes}
+                    src={screen.src}
+                    widths={phoneImageWidths}
+                  />
                 </div>
               </div>
             </div>
