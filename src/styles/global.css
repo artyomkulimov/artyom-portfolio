@@ -2,6 +2,8 @@
 @import "@fontsource-variable/geist-mono";
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 ::selection {
   color: #fefefe;
   background-color: #47a3f3;
@@ -26,22 +28,26 @@ pre {
   font-family: "Geist Mono Variable", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-
-  html {
-    color-scheme: dark;
-  }
-}
-
 html {
+  --border-glow-edge: rgb(229 229 229);
+  --border-glow-shadow: rgba(156, 163, 175, 0.1);
+  --border-glow-peak: rgb(156 163 175);
+  --border-glow-peak-shadow: rgba(156, 163, 175, 0.3);
   min-width: 360px;
   overflow-x: clip;
+  color-scheme: light;
+}
+
+html.dark {
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
+  --border-glow-edge: rgb(64 64 64);
+  --border-glow-shadow: rgba(115, 115, 115, 0.1);
+  --border-glow-peak: rgb(115 115 115);
+  --border-glow-peak-shadow: rgba(115, 115, 115, 0.3);
+  color-scheme: dark;
 }
 
 .project-item-y {
@@ -179,28 +185,13 @@ table {
 @keyframes borderGlow {
   0%,
   100% {
-    border-color: rgb(229 229 229);
-    box-shadow: 0 0 5px rgba(156, 163, 175, 0.1);
+    border-color: var(--border-glow-edge);
+    box-shadow: 0 0 5px var(--border-glow-shadow);
   }
 
   50% {
-    border-color: rgb(156 163 175);
-    box-shadow: 0 0 15px rgba(156, 163, 175, 0.3);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  @keyframes borderGlow {
-    0%,
-    100% {
-      border-color: rgb(64 64 64);
-      box-shadow: 0 0 5px rgba(115, 115, 115, 0.1);
-    }
-
-    50% {
-      border-color: rgb(115 115 115);
-      box-shadow: 0 0 15px rgba(115, 115, 115, 0.3);
-    }
+    border-color: var(--border-glow-peak);
+    box-shadow: 0 0 15px var(--border-glow-peak-shadow);
   }
 }
 
