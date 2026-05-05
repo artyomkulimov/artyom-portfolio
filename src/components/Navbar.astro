@@ -1,0 +1,44 @@
+---
+import ShowcaseIcon from './ShowcaseIcons.astro';
+
+interface Props {
+  variant?: 'default' | 'showcase';
+}
+
+const { variant = 'default' } = Astro.props;
+const navItems = [{ href: '/', name: 'home' }];
+---
+
+{variant === 'showcase' ? (
+  <header class="z-30 -mt-6 mb-0 w-full border-neutral-200 border-b bg-[#f7f3eb]/95 text-neutral-950 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/95 dark:text-neutral-50">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-start px-5 md:px-8">
+      <a
+        class="inline-grid h-10 grid-cols-[1rem_auto] items-center gap-2 text-sm leading-none text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100"
+        href="/"
+      >
+        <ShowcaseIcon name="arrow-left" class="h-4 w-4" />
+        <span class="block leading-none">portfolio</span>
+      </a>
+    </div>
+  </header>
+) : (
+  <aside class="-ml-[8px] mb-16 tracking-tight">
+    <div class="lg:sticky lg:top-20">
+      <nav
+        class="fade relative flex flex-row items-start px-0 pb-0 scroll-pr-6 md:relative md:overflow-auto"
+        id="nav"
+      >
+        <div class="flex flex-row space-x-0 pr-10">
+          {navItems.map(({ href, name }) => (
+            <a
+              class="relative m-1 flex px-2 py-1 align-middle text-neutral-900 transition-all hover:text-neutral-800 dark:text-neutral-100 dark:hover:text-neutral-200"
+              href={href}
+            >
+              {name}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </div>
+  </aside>
+)}

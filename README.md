@@ -1,31 +1,32 @@
 # Artyom Kulimov - Portfolio
 
-My personal portfolio website featuring a minimalist design with an interactive ASCII snake game background.
+Personal portfolio website with a minimalist design, project list, and visual showcase pages for selected work.
 
 ## Features
 
-- **Minimalist Design**: Clean, content-focused layout with subtle animations
-- **Interactive Snake Game**: 12 AI snakes in different colors roaming the background
-- **Controllable Snake**: Play your own snake with WASD controls
-- **Auto-play Mode**: Snake plays itself after 10 seconds of inactivity
-- **Framer Motion Animations**: Smooth hover effects and transitions
-- **Dark/Light Mode Support**: Responsive design that works in both themes
+- Minimalist content-focused home page
+- Static showcase pages for Study Lens and tap.tm
+- Astro-first rendering with tiny client-side JavaScript
+- CSS hover animations without a React animation runtime
+- Dark/light mode support through system preferences
+- Vercel Web Analytics and Speed Insights
 
 ## Tech Stack
 
-- **Next.js 15** - React framework
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **Lucide React** - Icons
-- **TypeScript** - Type safety
+- Astro 6
+- Vite
+- Tailwind CSS 4
+- TypeScript
+- Bun
+- Vercel static hosting
 
 ## Projects Showcase
 
-- **Invoice Tracker** - Shipment and invoice tracker with auth, admin views, Drizzle/Neon storage, currency calculations, and XLSX exports
-- **Study Lens** - Private AI study companion with screenshot review, a Python desktop hotkey agent, WebSocket relay, and Next.js chat UI
-- **Tap.tm** - Expo Router/React Native real-estate app with Kinde auth, three-language i18n, property search/filtering, saved listings, image uploads, and a multi-step posting flow
-- **SMAC** - Waste-sorting app using a fine-tuned Google Vision model trained from a Hugging Face dataset and hosted for inference on RunPod
-- **Self-hosted Linux Homelab** - Linux server with a 16 TB Sia node, media services, Tailscale VPN, storage, networking, and service management
+- Invoice Tracker - Shipment and invoice tracker with auth, admin views, Drizzle/Neon storage, currency calculations, and XLSX exports
+- Study Lens - Private AI study companion with screenshot review, a Python desktop hotkey agent, WebSocket relay, and Next.js chat UI
+- Tap.tm - Expo Router/React Native real-estate app with Kinde auth, three-language i18n, property search/filtering, saved listings, image uploads, and a multi-step posting flow
+- SMAC - Waste-sorting app using a fine-tuned Google Vision model trained from a Hugging Face dataset and hosted for inference on RunPod
+- Self-hosted Linux Homelab - Linux server with a 16 TB Sia node, media services, Tailscale VPN, storage, networking, and service management
 
 ## Contact
 
@@ -37,11 +38,12 @@ My personal portfolio website featuring a minimalist design with an interactive 
 ## Development
 
 ```bash
-# Install dependencies
 bun install
-
-# Run development server
 bun run dev
 ```
 
-Built with ❤️ and lots of snakes 🐍
+Useful checks:
+
+```bash
+bun run check
+```

@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import accountScreen from '../../assets/taptm/04-view-account.png';
+import homeScreen from '../../assets/taptm/01-home.png';
+import profileScreen from '../../assets/taptm/02-profile.png';
+import propertyScreen from '../../assets/taptm/03-property-detail.png';
+
+const stack = [
+  'expo router',
+  'react native',
+  'kinde auth',
+  'i18next',
+  'image uploads',
+  'native plugins',
+];
+
+const screens = [
+  {
+    title: 'home feed',
+    kicker: 'browse',
+    src: homeScreen,
+    alt: 'Tap.tm home feed with property cards and filters',
+    body: 'Search-first feed with rent/buy toggles, listing count, filters, sort controls, and property cards built for fast mobile scanning.',
+  },
+  {
+    title: 'profile hub',
+    kicker: 'account',
+    src: profileScreen,
+    alt: 'Tap.tm profile screen with user details and actions',
+    body: 'A compact account surface for view account, add property, favourites, owned listings, language switching, and support actions.',
+  },
+  {
+    title: 'property page',
+    kicker: 'listing',
+    src: propertyScreen,
+    alt: 'Tap.tm property detail screen with images and listing data',
+    body: 'Full listing view with real imagery, price, specs, property metadata, and action affordances for a buyer or renter.',
+  },
+  {
+    title: 'account details',
+    kicker: 'settings',
+    src: accountScreen,
+    alt: 'Tap.tm account screen with profile information',
+    body: 'Basic account page for viewing profile information and editing user details.',
+  },
+];
+---
+
+<BaseLayout title="tap.tm showcase" description="tap.tm mobile real-estate app showcase" variant="showcase">
+  <section class="overflow-hidden bg-[#f7f3eb] text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50" data-showcase-page>
+    <div class="border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto grid min-h-[760px] max-w-7xl grid-cols-1 gap-10 px-5 py-10 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-8 lg:py-14">
+        <div class="max-w-xl">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e53935]">mobile real-estate system</p>
+          <h1 class="mt-5 text-[4rem] font-semibold leading-[0.9] tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-[5.8rem]">
+            tap.tm
+          </h1>
+          <p class="mt-6 max-w-lg text-lg leading-8 text-neutral-700 dark:text-neutral-300">
+            A real-estate app built in Expo Router and React Native for
+            browsing listings, saving properties, posting homes, and shipping
+            a multilingual mobile experience.
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-l border-neutral-800/70 pl-4 text-sm text-neutral-500 dark:border-neutral-700">
+            <span>multi-step property creation</span>
+            <span>advanced listing filters</span>
+            <span>image upload pipeline</span>
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-2">
+            {stack.map((item) => (
+              <span class="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="relative min-h-[620px] md:min-h-[720px]">
+          <div class="absolute left-[3%] top-[15%] hidden w-[33%] rotate-[-7deg] opacity-95 sm:block">
+            <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
+              <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
+                <Image alt={screens[1].alt} class="h-auto w-full" sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw" src={screens[1].src} />
+              </div>
+            </div>
+          </div>
+          <div class="absolute right-[2%] top-[4%] w-[54%] max-w-[360px]">
+            <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
+              <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
+                <Image alt={screens[0].alt} class="h-auto w-full" loading="eager" sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw" src={screens[0].src} />
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-[2%] left-[19%] w-[48%] max-w-[330px] rotate-[4deg]">
+            <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
+              <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
+                <Image alt={screens[2].alt} class="h-auto w-full" sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw" src={screens[2].src} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <div class="grid gap-14">
+        {screens.map((screen, index) => (
+          <article class:list={[
+            'grid gap-8 pt-10 md:grid-cols-[0.8fr_1.2fr] md:items-center',
+            index === 0 ? '' : 'border-t border-neutral-200 dark:border-neutral-800',
+          ]}>
+            <div class={index % 2 === 1 ? 'md:order-2' : ''}>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e53935]">{screen.kicker}</p>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-50">
+                {screen.title}
+              </h2>
+              <p class="mt-4 max-w-md text-base leading-7 text-neutral-700 dark:text-neutral-300">
+                {screen.body}
+              </p>
+            </div>
+            <div class:list={[
+              'mx-auto w-full max-w-[360px]',
+              index % 2 === 1 ? 'md:justify-self-start' : 'md:justify-self-end',
+            ]}>
+              <div class="rounded-[2rem] border border-neutral-950 bg-neutral-950 p-2 shadow-[0_28px_80px_rgba(23,23,23,0.22)]">
+                <div class="overflow-hidden rounded-[1.55rem] bg-neutral-100">
+                  <Image alt={screen.alt} class="h-auto w-full" sizes="(min-width: 1280px) 340px, (min-width: 768px) 30vw, 78vw" src={screen.src} />
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
