@@ -1,0 +1,163 @@
+---
+import EmailCopy from '../components/EmailCopy.astro';
+import ProjectItem from '../components/ProjectItem.astro';
+import SkillTags from '../components/SkillTags.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <section class="relative z-10">
+    <div class="mb-16 flex flex-col sm:flex-row sm:items-start sm:justify-between">
+      <div>
+        <h1 class="mb-2 text-4xl font-semibold tracking-tighter text-neutral-700 dark:text-neutral-300">
+          artyom kulimov
+        </h1>
+        <p class="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
+          developer - student
+        </p>
+      </div>
+      <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:mt-0">
+        <a href="https://github.com/artyomkulimov" class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+          github
+        </a>
+        <EmailCopy />
+        <a href="https://www.linkedin.com/in/artyom-kulimov-7a5032265/" class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+          linkedin
+        </a>
+        <a href="https://x.com/artyomkulimov" class="text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+          x
+        </a>
+      </div>
+    </div>
+
+    <div class="relative mb-16">
+      <div class="absolute left-0 top-0 h-px w-8 bg-neutral-300 dark:bg-neutral-600"></div>
+      <h2 class="mb-8 text-lg font-medium text-neutral-800 dark:text-neutral-200">projects</h2>
+
+      <div class="space-y-8">
+        <ProjectItem>
+          <div class="mb-1 flex items-center gap-2">
+            <h3 class="font-medium text-neutral-800 dark:text-neutral-200">invoice tracker</h3>
+            <a href="https://github.com/artyomkulimov/invoicetracker" class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+              github
+            </a>
+          </div>
+          <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            shipment and invoice tracker built for my dad: tracks GTD records, costs, multi-currency profit, edit history, admin views, and XLSX invoice exports.
+            built with next.js app router, typescript, workos auth, drizzle orm, neon postgres, tailwind/shadcn ui.
+          </p>
+          <SkillTags
+            skills={[
+              'server actions/auth',
+              'database schema design',
+              'currency calculations',
+              'spreadsheet exports',
+            ]}
+          />
+        </ProjectItem>
+
+        <ProjectItem>
+          <a href="/showcase/study-lens" class="block cursor-grab active:cursor-grabbing">
+            <div class="mb-1 flex items-center gap-2">
+              <h3 class="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white">study lens</h3>
+              <span class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+                showcase
+              </span>
+            </div>
+            <p class="mb-3 text-xs text-neutral-600 dark:text-neutral-400">private prototype</p>
+            <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+              ai study companion that turns screenshots into guided feedback for reviewing problems, checking reasoning, and understanding mistakes.
+              built with a python desktop hotkey agent, websocket relay, and next.js chat ui.
+            </p>
+            <SkillTags
+              skills={[
+                'desktop automation',
+                'websocket architecture',
+                'multimodal ai',
+                'python + next.js integration',
+              ]}
+            />
+          </a>
+        </ProjectItem>
+
+        <ProjectItem>
+          <div class="mb-1 flex items-center gap-2">
+            <a href="/showcase/taptm" class="inline-flex cursor-grab items-center gap-2 active:cursor-grabbing">
+              <h3 class="font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white">tap.tm</h3>
+              <span class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+                showcase
+              </span>
+            </a>
+            <a href="https://github.com/artyomkulimov/tap.tm" class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+              github
+            </a>
+          </div>
+          <a href="/showcase/taptm" class="block cursor-grab active:cursor-grabbing">
+            <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+              real-estate mobile app built with expo router and react native, with kinde auth, property search/filtering, saved listings, image uploads, and a multi-step posting flow.
+              built with three-language i18n for english, russian, and turkmen.
+            </p>
+            <SkillTags
+              skills={[
+                'expo router',
+                'kinde auth',
+                'i18n (en/ru/tk)',
+                'property flows',
+              ]}
+            />
+          </a>
+        </ProjectItem>
+
+        <ProjectItem>
+          <div class="mb-1 flex items-center gap-2">
+            <h3 class="font-medium text-neutral-800 dark:text-neutral-200">smac khalifa university app</h3>
+            <a href="https://github.com/danielarbabian/martab" class="text-xs text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
+              github
+            </a>
+          </div>
+          <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            waste-sorting app that used a fine-tuned google vision model trained on a hugging face dataset and hosted for inference on runpod.
+            included internationalisation and tracked saved carbon emissions from correct disposal.
+          </p>
+          <SkillTags
+            skills={[
+              'computer vision',
+              'hugging face datasets',
+              'runpod inference',
+              'internationalisation',
+            ]}
+          />
+        </ProjectItem>
+
+        <ProjectItem>
+          <h3 class="mb-1 font-medium text-neutral-800 dark:text-neutral-200">self-hosted linux homelab</h3>
+          <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            linux server running a 16 TB siacoin node and private media stack with jellyfin, radarr, sonarr, prowlarr, and transmission.
+            hands-on with storage, services, networking, ssh, tailscale vpn, and keeping self-hosted apps running.
+          </p>
+        </ProjectItem>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute left-0 top-0 h-px w-8 bg-neutral-300 dark:bg-neutral-600"></div>
+      <h2 class="mb-8 text-lg font-medium text-neutral-800 dark:text-neutral-200">experience</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="mb-1 font-medium text-neutral-800 dark:text-neutral-200">nebuladevs</h3>
+          <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            experimented co-founding <strong>nebuladevs</strong>, built client sites, learned real dev + delivery.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-1 font-medium text-neutral-800 dark:text-neutral-200">examvault</h3>
+          <p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            then co-founded <strong>examvault</strong>, where ai and education meet to help students learn smarter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

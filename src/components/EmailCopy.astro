@@ -1,0 +1,43 @@
+---
+const email = 'artyomkulimov@gmail.com';
+---
+
+<button
+  aria-label={`copy ${email}`}
+  class="min-w-[3.75rem] text-left text-neutral-600 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+  data-email={email}
+  data-email-copy
+  title={email}
+  type="button"
+>
+  email
+</button>
+
+<script>
+  const copyButtons = document.querySelectorAll('[data-email-copy]');
+
+  copyButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    const label = button.textContent || 'email';
+    const email = button.dataset.email || '';
+    let timeoutId: number | undefined;
+
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        button.textContent = 'copied';
+        if (timeoutId) window.clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(() => {
+          button.textContent = label;
+        }, 1200);
+      } catch {
+        button.textContent = 'error';
+        if (timeoutId) window.clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(() => {
+          button.textContent = label;
+        }, 1200);
+      }
+    });
+  });
+</script>
