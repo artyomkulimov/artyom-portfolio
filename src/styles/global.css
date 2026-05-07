@@ -442,6 +442,10 @@ body {
   width: calc(100% + 1rem);
 }
 
+.project-item-clickable {
+  cursor: pointer;
+}
+
 .project-item-clickable a:not(.project-item-hit-area),
 .project-item-clickable button {
   position: relative;
@@ -453,7 +457,7 @@ body {
   position: relative;
   z-index: 30;
   pointer-events: auto;
-  cursor: default;
+  cursor: pointer;
 }
 
 .project-showcase-link {

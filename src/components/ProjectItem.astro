@@ -20,7 +20,7 @@ const isClickable = Boolean(href);
 >
   {href && (
     <a
-      class="project-item-hit-area absolute inset-0 z-10 cursor-grab active:cursor-grabbing"
+      class="project-item-hit-area absolute inset-0 z-10 cursor-pointer"
       data-astro-prefetch={showcase ? "hover" : undefined}
       href={href}
     >
@@ -35,12 +35,55 @@ const isClickable = Boolean(href);
     class="project-item-x absolute -left-4 -top-2 h-0.5"
     aria-hidden="true"
   ></div>
-  <div class:list={[isClickable && 'pointer-events-none relative z-20']}>
+  <div class:list={[isClickable && 'relative z-20']}>
     <slot />
   </div>
 </div>
 
 <script>
+  const interactiveSelector = [
+    "a",
+    "button",
+    "input",
+    "select",
+    "textarea",
+    "summary",
+    "[role='button']",
+    "[role='link']",
+  ].join(",");
+
+  const setupProjectNavigation = () => {
+    const items = Array.from(
+      document.querySelectorAll(".project-item-clickable")
+    );
+
+    for (const item of items) {
+      const hitArea = item.querySelector(".project-item-hit-area");
+
+      if (!(hitArea instanceof HTMLAnchorElement)) {
+        continue;
+      }
+
+      item.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (
+          !(target instanceof Element) ||
+          target.closest(interactiveSelector)
+        ) {
+          return;
+        }
+
+        if (event.metaKey || event.ctrlKey) {
+          window.open(hitArea.href, "_blank", "noopener,noreferrer");
+          return;
+        }
+
+        window.location.href = hitArea.href;
+      });
+    }
+  };
+
   const setupMobileProjectMotion = () => {
     const items = Array.from(document.querySelectorAll("[data-project-item]"));
 
@@ -106,10 +149,16 @@ const isClickable = Boolean(href);
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupMobileProjectMotion, {
-      once: true,
-    });
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        setupProjectNavigation();
+        setupMobileProjectMotion();
+      },
+      { once: true }
+    );
   } else {
+    setupProjectNavigation();
     setupMobileProjectMotion();
   }
 </script>
