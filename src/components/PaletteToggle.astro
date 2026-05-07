@@ -146,21 +146,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
       transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .palette-toggle-icon-shell::after {
-    position: absolute;
-    bottom: -0.16rem;
-    left: 0.12rem;
-    width: 0.72rem;
-    height: 0.14rem;
-    pointer-events: none;
-    content: "";
-    background: currentColor;
-    border-radius: 999px;
-    opacity: 0;
-    transform: scaleX(0.18) translateY(-0.08rem);
-    transform-origin: left center;
-  }
-
   .palette-toggle-icon {
     overflow: visible;
     transform-origin: 42% 58%;
@@ -220,10 +205,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     animation: paletteBucketSplashPour 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  .palette-toggle-icon-shell.is-splashing::after {
-    animation: paletteSplashPuddle 680ms ease-out both;
-  }
-
   .palette-toggle-icon-shell.is-splashing .palette-toggle-splash {
     animation: paletteSplashDrop 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
@@ -279,27 +260,8 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     }
   }
 
-  @keyframes paletteSplashPuddle {
-    0%,
-    24% {
-      opacity: 0;
-      transform: scaleX(0.18) translateY(-0.08rem);
-    }
-
-    42% {
-      opacity: 0.44;
-      transform: scaleX(1) translateY(0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: scaleX(0.34) translateY(0.08rem);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .palette-toggle-icon-shell,
-    .palette-toggle-icon-shell::after,
     .palette-toggle-icon,
     .palette-toggle-splash {
       transition: none;
