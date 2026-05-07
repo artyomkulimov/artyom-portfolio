@@ -94,21 +94,31 @@ const screens = [
             multilingual mobile experience.
           </p>
 
-          <div
-            class="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-neutral-800/70 border-l pl-4 text-neutral-500 text-sm dark:border-neutral-700"
+          <p
+            class="mt-7 max-w-md border-neutral-300 border-l pl-4 text-neutral-500 text-sm leading-7 dark:border-neutral-800 dark:text-neutral-500"
           >
-            <span>multi-step property creation</span>
-            <span>advanced listing filters</span>
-            <span>image upload pipeline</span>
-          </div>
+            Built around listing filters, multi-step property creation, and
+            image uploads.
+          </p>
 
-          <div class="mt-7 flex flex-wrap gap-2">
-            {stack.map((item) => (
-              <span class="rounded-md border border-neutral-300 bg-white px-3 py-1.5 font-medium text-neutral-700 text-xs shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
-                {item}
-              </span>
+          <ul
+            aria-label="tap.tm technical stack"
+            class="mt-6 flex max-w-lg flex-wrap gap-x-3 gap-y-1 font-mono text-[13px] leading-6 text-neutral-600 dark:text-neutral-400"
+          >
+            {stack.map((item, index) => (
+              <li class="inline-flex items-center gap-3">
+                <span>{item}</span>
+                {index < stack.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    class="text-neutral-300 dark:text-neutral-700"
+                  >
+                    /
+                  </span>
+                )}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
         <div class="relative min-h-[520px] sm:min-h-[600px] md:min-h-[720px]">

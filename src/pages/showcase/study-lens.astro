@@ -56,9 +56,9 @@ const studyImageWidths = [480, 720, 960, 1280, 1600];
       >
         <div>
           <p
-            class="font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
+            class="font-mono text-[13px] leading-6 text-neutral-600 dark:text-neutral-400"
           >
-            private prototype / ai study workflow
+            ai study workflow
           </p>
           <h1
             class="mt-5 text-6xl font-semibold leading-[0.9] tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-8xl"
@@ -86,13 +86,13 @@ const studyImageWidths = [480, 720, 960, 1280, 1600];
           <p
             class="mt-4 max-w-md text-base leading-7 text-neutral-700 dark:text-neutral-300"
           >
-            Capture the worksheet once, then read the feedback beside the
-            problem without bouncing between tools.
+            Screenshot your work and get immediate AI feedback on your reasoning
+            without breaking the study flow.
           </p>
 
           <ul
             aria-label="study lens technical details"
-            class="mt-10 divide-y divide-neutral-200 font-mono text-[11px] leading-5 text-neutral-600 dark:divide-neutral-800 dark:text-neutral-400"
+            class="mt-10 divide-y divide-neutral-200 font-mono text-[13px] leading-6 text-neutral-600 dark:divide-neutral-800 dark:text-neutral-400"
           >
             {details.map((detail) => (
               <li class="py-2">{detail}</li>
@@ -100,21 +100,25 @@ const studyImageWidths = [480, 720, 960, 1280, 1600];
           </ul>
         </div>
 
-        <Image
-          alt="Study Lens showing a question paper screenshot and a model answer"
-          class="h-auto w-full max-w-[720px] justify-self-end"
-          priority
-          sizes={studyImageSizes}
-          src={studyLensContent}
-          widths={studyImageWidths}
-        />
+        <div
+          class="hidden md:block md:w-full md:max-w-[720px] md:justify-self-end"
+        >
+          <Image
+            alt="Study Lens showing a question paper screenshot and a model answer"
+            class="h-auto w-full max-w-[720px]"
+            priority
+            sizes={studyImageSizes}
+            src={studyLensContent}
+            widths={studyImageWidths}
+          />
+        </div>
       </div>
 
       <div class="border-neutral-200 border-t py-14 dark:border-neutral-800">
         <div class="grid gap-10 md:grid-cols-[0.72fr_1.28fr]">
           <div>
             <p
-              class="font-mono text-[11px] leading-5 text-neutral-600 dark:text-neutral-400"
+              class="font-mono text-[13px] leading-6 text-neutral-600 dark:text-neutral-400"
             >
               system shape
             </p>
@@ -126,8 +130,13 @@ const studyImageWidths = [480, 720, 960, 1280, 1600];
           </div>
 
           <div class="grid gap-x-8 gap-y-10 md:grid-cols-2">
-            {flow.map((item) => (
-              <div class="border-neutral-200 border-t pt-4 dark:border-neutral-800">
+            {flow.map((item, index) => (
+              <div
+                class:list={[
+                  'pt-4',
+                  index > 1 && 'border-neutral-200 border-t dark:border-neutral-800',
+                ]}
+              >
                 <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
                   <ShowcaseIcon name={item.icon} class="h-4 w-4" />
                   <h3 class="text-sm font-semibold">{item.label}</h3>
