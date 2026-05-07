@@ -358,7 +358,6 @@ html.dark {
 
 body {
   color: var(--site-fg);
-  background-color: var(--site-bg);
 }
 
 .project-item-y {
