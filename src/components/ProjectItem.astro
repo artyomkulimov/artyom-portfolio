@@ -84,6 +84,80 @@ const isClickable = Boolean(href);
     }
   };
 
+  const setupShowcaseChevronMotion = () => {
+    const items = Array.from(
+      document.querySelectorAll(".project-item-showcase")
+    );
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+    const cleanupHandlers: Array<() => void> = [];
+
+    for (const item of items) {
+      let startTimer: number | undefined;
+      let loopTimer: number | undefined;
+
+      const clearTimers = () => {
+        window.clearTimeout(startTimer);
+        window.clearInterval(loopTimer);
+      };
+
+      const reset = () => {
+        clearTimers();
+        item.classList.remove("is-showcase-chevron-forward");
+      };
+
+      const start = () => {
+        reset();
+
+        if (reducedMotionQuery.matches) {
+          return;
+        }
+
+        startTimer = window.setTimeout(() => {
+          let isForward = true;
+          item.classList.add("is-showcase-chevron-forward");
+
+          loopTimer = window.setInterval(() => {
+            isForward = !isForward;
+            item.classList.toggle("is-showcase-chevron-forward", isForward);
+          }, 520);
+        }, 40);
+      };
+
+      const maybeResetFocus = (event: FocusEvent) => {
+        const nextTarget = event.relatedTarget;
+
+        if (nextTarget instanceof Node && item.contains(nextTarget)) {
+          return;
+        }
+
+        reset();
+      };
+
+      item.addEventListener("pointerenter", start);
+      item.addEventListener("pointerleave", reset);
+      item.addEventListener("focusin", start);
+      item.addEventListener("focusout", maybeResetFocus);
+
+      cleanupHandlers.push(() => {
+        reset();
+        item.removeEventListener("pointerenter", start);
+        item.removeEventListener("pointerleave", reset);
+        item.removeEventListener("focusin", start);
+        item.removeEventListener("focusout", maybeResetFocus);
+      });
+    }
+
+    reducedMotionQuery.addEventListener("change", () => {
+      if (reducedMotionQuery.matches) {
+        for (const cleanup of cleanupHandlers) {
+          cleanup();
+        }
+      }
+    });
+  };
+
   const setupMobileProjectMotion = () => {
     const items = Array.from(document.querySelectorAll("[data-project-item]"));
 
@@ -153,12 +227,14 @@ const isClickable = Boolean(href);
       "DOMContentLoaded",
       () => {
         setupProjectNavigation();
+        setupShowcaseChevronMotion();
         setupMobileProjectMotion();
       },
       { once: true }
     );
   } else {
     setupProjectNavigation();
+    setupShowcaseChevronMotion();
     setupMobileProjectMotion();
   }
 </script>
