@@ -36,17 +36,6 @@ const ogImageUrl = new URL("/og.png", site).toString();
       (() => {
         const root = document.documentElement;
         const themeModeKey = "theme-mode";
-        const siteThemeKey = "site-theme";
-        const siteThemes = [
-          "gruvbox",
-          "default",
-          "slate",
-          "mocha",
-          "pine",
-          "nord",
-          "sage",
-          "sand",
-        ];
         const readStorage = (key) => {
           try {
             return localStorage.getItem(key);
@@ -62,11 +51,7 @@ const ogImageUrl = new URL("/og.png", site).toString();
           // Storage can be unavailable in strict browser modes.
         }
 
-        const storedSiteTheme = readStorage(siteThemeKey);
-        root.dataset.siteTheme =
-          storedSiteTheme && siteThemes.includes(storedSiteTheme)
-            ? storedSiteTheme
-            : siteThemes[0];
+        root.dataset.siteTheme = "gruvbox";
 
         const storedTheme = readStorage(themeModeKey);
         const prefersDark = window.matchMedia(
