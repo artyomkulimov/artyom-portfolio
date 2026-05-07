@@ -23,16 +23,11 @@ const { variant = "default" } = Astro.props;
     </div>
   </header>
 ) : (
-  <>
-    <aside class="pointer-events-none fixed top-3 left-4 z-50 tracking-tight sm:left-5">
-      <div class="pointer-events-auto">
-        <PaletteToggle />
-      </div>
-    </aside>
-    <aside class="pointer-events-none fixed top-3 right-4 z-50 tracking-tight sm:right-5">
-      <div class="pointer-events-auto">
-        <ThemeToggle />
-      </div>
-    </aside>
-  </>
+  <nav
+    aria-label="site appearance"
+    class="mb-6 flex w-full items-center justify-between tracking-tight"
+  >
+    <PaletteToggle />
+    <ThemeToggle />
+  </nav>
 )}

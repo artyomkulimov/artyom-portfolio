@@ -378,8 +378,8 @@ html {
   --color-white: var(--site-bg);
   --project-line: var(--site-accent-line);
   --site-link-hover: var(--site-neutral-800);
-  min-width: 360px;
-  overflow-x: clip;
+  max-width: 100%;
+  overflow-x: hidden;
   color: var(--site-fg);
   color-scheme: light;
   background-color: var(--site-bg);
@@ -397,6 +397,8 @@ html.dark {
 }
 
 body {
+  max-width: 100%;
+  overflow-x: hidden;
   color: var(--site-fg);
 }
 
