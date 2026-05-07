@@ -467,8 +467,10 @@ body {
 
 .project-showcase-link [data-showcase-arrow] {
   --showcase-chevron-offset: 0rem;
+  --showcase-chevron-scale: 1;
   display: inline-block;
-  transform: translateX(var(--showcase-chevron-offset));
+  transform: translateX(var(--showcase-chevron-offset))
+    scale(var(--showcase-chevron-scale));
   transition: transform 0.52s cubic-bezier(0.45, 0, 0.55, 1);
   will-change: transform;
 }
@@ -476,6 +478,13 @@ body {
 .project-item-showcase:hover .project-showcase-link,
 .project-item-showcase:focus-within .project-showcase-link {
   color: var(--site-link-hover);
+}
+
+.project-item-showcase:hover .project-showcase-link [data-showcase-arrow],
+.project-item-showcase:focus-within
+  .project-showcase-link
+  [data-showcase-arrow] {
+  --showcase-chevron-scale: 1.1;
 }
 
 .project-item-showcase.is-showcase-chevron-forward
