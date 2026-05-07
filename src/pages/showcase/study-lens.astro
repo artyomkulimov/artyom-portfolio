@@ -95,7 +95,11 @@ const studyImageWidths = [480, 720, 960, 1280, 1600];
             class="mt-10 divide-y divide-neutral-200 font-mono text-[13px] leading-6 text-neutral-600 dark:divide-neutral-800 dark:text-neutral-400"
           >
             {details.map((detail) => (
-              <li class="py-2">{detail}</li>
+              <li class="group/skill py-2 transition-colors hover:text-neutral-800 dark:hover:text-neutral-200">
+                <span class="decoration-neutral-300 underline-offset-4 transition-[color,text-decoration-color] group-hover/skill:underline dark:decoration-neutral-700">
+                  {detail}
+                </span>
+              </li>
             ))}
           </ul>
         </div>
