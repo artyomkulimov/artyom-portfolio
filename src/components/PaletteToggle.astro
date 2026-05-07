@@ -9,8 +9,16 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   aria-label="switch color theme"
   title="color theme"
 >
-  <span aria-hidden="true" class="palette-toggle-icon-shell">
+  <span
+    aria-hidden="true"
+    class="palette-toggle-icon-shell"
+    data-palette-icon-shell
+  >
     <PaintBucket class="palette-toggle-icon h-4 w-4" />
+    <span class="palette-toggle-splash palette-toggle-splash-a"></span>
+    <span class="palette-toggle-splash palette-toggle-splash-b"></span>
+    <span class="palette-toggle-splash palette-toggle-splash-c"></span>
+    <span class="palette-toggle-splash palette-toggle-splash-d"></span>
   </span>
   <span class="palette-toggle-label" data-palette-label aria-hidden="true">
     gruvbox
@@ -19,6 +27,9 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 
 <script>
   const paletteToggle = document.querySelector("[data-palette-toggle]");
+  const paletteIconShell = paletteToggle?.querySelector(
+    "[data-palette-icon-shell]"
+  );
   const paletteLabel = paletteToggle?.querySelector("[data-palette-label]");
   const root = document.documentElement;
   const siteThemeKey = "site-theme";
@@ -36,6 +47,8 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     "(prefers-reduced-motion: reduce)"
   );
   let paletteTransitionTimer: number | undefined;
+  let paletteSplashTimer: number | undefined;
+  const paletteSplashDuration = 680;
 
   const getCurrentPalette = () => root.dataset.siteTheme ?? palettes[0].id;
   const getPaletteIndex = (id: string) => {
@@ -64,6 +77,23 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     }, 620);
   };
 
+  const splashPaletteIcon = () => {
+    if (
+      reducedMotionQuery.matches ||
+      !(paletteIconShell instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    window.clearTimeout(paletteSplashTimer);
+    paletteIconShell.classList.remove("is-splashing");
+    paletteIconShell.getBoundingClientRect();
+    paletteIconShell.classList.add("is-splashing");
+    paletteSplashTimer = window.setTimeout(() => {
+      paletteIconShell.classList.remove("is-splashing");
+    }, paletteSplashDuration);
+  };
+
   const syncPaletteButton = () => {
     if (!(paletteToggle instanceof HTMLButtonElement)) {
       return;
@@ -90,6 +120,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
       palettes[(currentIndex + 1) % palettes.length] ?? palettes[0];
 
     startPaletteTransition();
+    splashPaletteIcon();
     root.dataset.siteTheme = nextPalette.id;
     storePalette(nextPalette.id);
     syncPaletteButton();
@@ -104,13 +135,30 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   }
 
   .palette-toggle-icon-shell {
+    position: relative;
     display: inline-flex;
+    overflow: visible;
     color: var(--site-accent-strong);
     transform-origin: center;
     transform-box: fill-box;
     transition:
       color 240ms ease,
       transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .palette-toggle-icon-shell::after {
+    position: absolute;
+    bottom: -0.16rem;
+    left: 0.12rem;
+    width: 0.72rem;
+    height: 0.14rem;
+    pointer-events: none;
+    content: "";
+    background: currentColor;
+    border-radius: 999px;
+    opacity: 0;
+    transform: scaleX(0.18) translateY(-0.08rem);
+    transform-origin: left center;
   }
 
   .palette-toggle-icon {
@@ -123,6 +171,43 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     stroke-width: 2.15;
   }
 
+  .palette-toggle-splash {
+    position: absolute;
+    top: 48%;
+    left: 42%;
+    width: 0.18rem;
+    height: 0.18rem;
+    pointer-events: none;
+    background: currentColor;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+
+  .palette-toggle-splash-a {
+    --palette-splash-x: -0.54rem;
+    --palette-splash-y: -0.48rem;
+    --palette-splash-scale: 0.72;
+  }
+
+  .palette-toggle-splash-b {
+    --palette-splash-x: 0.08rem;
+    --palette-splash-y: -0.68rem;
+    --palette-splash-scale: 0.52;
+  }
+
+  .palette-toggle-splash-c {
+    --palette-splash-x: 0.5rem;
+    --palette-splash-y: -0.22rem;
+    --palette-splash-scale: 0.62;
+  }
+
+  .palette-toggle-splash-d {
+    --palette-splash-x: -0.28rem;
+    --palette-splash-y: 0.38rem;
+    --palette-splash-scale: 0.48;
+  }
+
   .group\/palette:hover .palette-toggle-icon-shell {
     transform: rotate(-12deg) translateY(-0.02rem);
   }
@@ -131,9 +216,94 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     transform: rotate(-4deg) scale(0.92);
   }
 
+  .palette-toggle-icon-shell.is-splashing .palette-toggle-icon {
+    animation: paletteBucketSplashPour 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .palette-toggle-icon-shell.is-splashing::after {
+    animation: paletteSplashPuddle 680ms ease-out both;
+  }
+
+  .palette-toggle-icon-shell.is-splashing .palette-toggle-splash {
+    animation: paletteSplashDrop 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .palette-toggle-icon-shell.is-splashing .palette-toggle-splash-b {
+    animation-delay: 35ms;
+  }
+
+  .palette-toggle-icon-shell.is-splashing .palette-toggle-splash-c {
+    animation-delay: 55ms;
+  }
+
+  .palette-toggle-icon-shell.is-splashing .palette-toggle-splash-d {
+    animation-delay: 85ms;
+  }
+
+  @keyframes paletteBucketSplashPour {
+    0%,
+    100% {
+      transform: rotate(0deg) translateY(0);
+    }
+
+    24% {
+      transform: rotate(-24deg) translate(-0.03rem, -0.03rem);
+    }
+
+    48% {
+      transform: rotate(-14deg) translate(0.01rem, 0);
+    }
+
+    72% {
+      transform: rotate(6deg) translateY(0.01rem);
+    }
+  }
+
+  @keyframes paletteSplashDrop {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.2);
+    }
+
+    24% {
+      opacity: 0.95;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(
+          calc(-50% + var(--palette-splash-x)),
+          calc(-50% + var(--palette-splash-y))
+        )
+        scale(var(--palette-splash-scale));
+    }
+  }
+
+  @keyframes paletteSplashPuddle {
+    0%,
+    24% {
+      opacity: 0;
+      transform: scaleX(0.18) translateY(-0.08rem);
+    }
+
+    42% {
+      opacity: 0.44;
+      transform: scaleX(1) translateY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleX(0.34) translateY(0.08rem);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .palette-toggle-icon-shell {
+    .palette-toggle-icon-shell,
+    .palette-toggle-icon-shell::after,
+    .palette-toggle-icon,
+    .palette-toggle-splash {
       transition: none;
+      animation: none;
     }
   }
 </style>
