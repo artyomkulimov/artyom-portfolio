@@ -4,7 +4,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 
 <button
   type="button"
-  class="group/palette inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[14px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
+  class="group/palette inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[15px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
   data-palette-toggle
   aria-label="switch color theme"
   title="color theme"
@@ -20,8 +20,31 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     <span class="palette-toggle-splash palette-toggle-splash-c"></span>
     <span class="palette-toggle-splash palette-toggle-splash-d"></span>
   </span>
-  <span class="palette-toggle-label" data-palette-label aria-hidden="true">
-    gruvbox
+  <span class="palette-toggle-label" aria-hidden="true">
+    <span class="palette-toggle-label-value palette-toggle-label-gruvbox">
+      gruvbox
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-default">
+      default
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-slate">
+      slate
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-mocha">
+      mocha
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-pine">
+      pine
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-nord">
+      nord
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-sage">
+      sage
+    </span>
+    <span class="palette-toggle-label-value palette-toggle-label-sand">
+      sand
+    </span>
   </span>
 </button>
 
@@ -30,7 +53,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   const paletteIconShell = paletteToggle?.querySelector(
     "[data-palette-icon-shell]"
   );
-  const paletteLabel = paletteToggle?.querySelector("[data-palette-label]");
   const root = document.documentElement;
   const siteThemeKey = "site-theme";
   const palettes = [
@@ -103,10 +125,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     const currentIndex = getPaletteIndex(currentId);
     const currentPalette = palettes[currentIndex] ?? palettes[0];
 
-    if (paletteLabel instanceof HTMLElement) {
-      paletteLabel.textContent = currentPalette.label;
-    }
-
     paletteToggle.setAttribute(
       "aria-label",
       `switch color theme, current ${currentPalette.label}`
@@ -132,6 +150,21 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 <style is:global>
   .palette-toggle-label {
     display: inline-block;
+  }
+
+  .palette-toggle-label-value {
+    display: none;
+  }
+
+  html[data-site-theme="gruvbox"] .palette-toggle-label-gruvbox,
+  html[data-site-theme="default"] .palette-toggle-label-default,
+  html[data-site-theme="slate"] .palette-toggle-label-slate,
+  html[data-site-theme="mocha"] .palette-toggle-label-mocha,
+  html[data-site-theme="pine"] .palette-toggle-label-pine,
+  html[data-site-theme="nord"] .palette-toggle-label-nord,
+  html[data-site-theme="sage"] .palette-toggle-label-sage,
+  html[data-site-theme="sand"] .palette-toggle-label-sand {
+    display: inline;
   }
 
   .palette-toggle-icon-shell {
