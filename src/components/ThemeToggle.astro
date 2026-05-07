@@ -34,13 +34,6 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
     // Storage can be unavailable in strict browser modes.
   }
 
-  const getStoredTheme = () => {
-    try {
-      return localStorage.getItem(themeModeKey);
-    } catch {
-      return null;
-    }
-  };
   const getCurrentTheme = () =>
     root.classList.contains("dark") ? "dark" : "light";
 
@@ -77,18 +70,6 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
     }
     syncThemeButton();
   });
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      if (getStoredTheme()) {
-        return;
-      }
-
-      startThemeTransition();
-      root.classList.toggle("dark", event.matches);
-      syncThemeButton();
-    });
 
   syncThemeButton();
 </script>
