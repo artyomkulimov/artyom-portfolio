@@ -449,6 +449,13 @@ body {
   pointer-events: auto;
 }
 
+.project-item-clickable .group\/skill {
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
+  cursor: default;
+}
+
 .project-showcase-link {
   transition: color 0.2s ease;
 }
