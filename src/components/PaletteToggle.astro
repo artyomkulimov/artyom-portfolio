@@ -32,6 +32,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   );
   const paletteLabel = paletteToggle?.querySelector("[data-palette-label]");
   const root = document.documentElement;
+  const siteThemeKey = "site-theme";
   const palettes = [
     { id: "gruvbox", label: "gruvbox" },
     { id: "default", label: "default" },
@@ -53,6 +54,14 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   const getPaletteIndex = (id: string) => {
     const index = palettes.findIndex((palette) => palette.id === id);
     return index >= 0 ? index : 0;
+  };
+
+  const storePalette = (id: string) => {
+    try {
+      localStorage.setItem(siteThemeKey, id);
+    } catch {
+      return;
+    }
   };
 
   const startPaletteTransition = () => {
@@ -113,6 +122,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     startPaletteTransition();
     splashPaletteIcon();
     root.dataset.siteTheme = nextPalette.id;
+    storePalette(nextPalette.id);
     syncPaletteButton();
   });
 
