@@ -17,7 +17,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     <PaintBucket class="palette-toggle-icon h-4.5 w-4.5" />
   </span>
   <span class="palette-toggle-label" data-palette-label aria-hidden="true">
-    slate
+    gruvbox
   </span>
 </button>
 
@@ -30,11 +30,12 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   const root = document.documentElement;
   const siteThemeKey = "site-theme";
   const palettes = [
+    { id: "gruvbox", label: "gruvbox" },
+    { id: "default", label: "default" },
     { id: "slate", label: "slate" },
     { id: "mocha", label: "mocha" },
     { id: "pine", label: "pine" },
     { id: "nord", label: "nord" },
-    { id: "gruvbox", label: "gruvbox" },
     { id: "sage", label: "sage" },
     { id: "sand", label: "sand" },
   ] as const;
