@@ -26,19 +26,56 @@ const ogImageUrl = new URL("/og.png", site).toString();
 ---
 
 <!doctype html>
-<html lang="en" class="bg-white text-black dark:bg-black dark:text-white">
+<html
+  lang="en"
+  class="bg-white text-black dark:bg-black dark:text-white"
+  data-site-theme="slate"
+>
   <head>
     <script is:inline>
-      localStorage.removeItem("theme");
-      localStorage.removeItem("theme-preference");
-      const storedTheme = localStorage.getItem("theme-mode");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      document.documentElement.classList.toggle(
-        "dark",
-        storedTheme ? storedTheme === "dark" : prefersDark
-      );
+      (() => {
+        const root = document.documentElement;
+        const themeModeKey = "theme-mode";
+        const siteThemeKey = "site-theme";
+        const siteThemes = [
+          "slate",
+          "mocha",
+          "pine",
+          "nord",
+          "gruvbox",
+          "sage",
+          "sand",
+        ];
+        const readStorage = (key) => {
+          try {
+            return localStorage.getItem(key);
+          } catch {
+            return null;
+          }
+        };
+
+        try {
+          localStorage.removeItem("theme");
+          localStorage.removeItem("theme-preference");
+        } catch {
+          // Storage can be unavailable in strict browser modes.
+        }
+
+        const storedSiteTheme = readStorage(siteThemeKey);
+        root.dataset.siteTheme =
+          storedSiteTheme && siteThemes.includes(storedSiteTheme)
+            ? storedSiteTheme
+            : siteThemes[0];
+
+        const storedTheme = readStorage(themeModeKey);
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        root.classList.toggle(
+          "dark",
+          storedTheme ? storedTheme === "dark" : prefersDark
+        );
+      })();
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

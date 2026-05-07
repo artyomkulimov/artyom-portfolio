@@ -1,0 +1,246 @@
+---
+import PaintBucket from "@lucide/astro/icons/paint-bucket";
+---
+
+<button
+  type="button"
+  class="group/palette m-1 inline-flex h-9 origin-left items-center justify-start gap-2 px-3 font-mono text-xs leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
+  data-palette-toggle
+  aria-label="switch color theme"
+  title="color theme"
+>
+  <span
+    aria-hidden="true"
+    class="palette-toggle-icon-shell"
+    data-palette-icon-shell
+  >
+    <PaintBucket class="palette-toggle-icon h-4.5 w-4.5" />
+  </span>
+  <span class="palette-toggle-label" data-palette-label aria-hidden="true">
+    slate
+  </span>
+</button>
+
+<script>
+  const paletteToggle = document.querySelector("[data-palette-toggle]");
+  const paletteIconShell = paletteToggle?.querySelector(
+    "[data-palette-icon-shell]"
+  );
+  const paletteLabel = paletteToggle?.querySelector("[data-palette-label]");
+  const root = document.documentElement;
+  const siteThemeKey = "site-theme";
+  const palettes = [
+    { id: "slate", label: "slate" },
+    { id: "mocha", label: "mocha" },
+    { id: "pine", label: "pine" },
+    { id: "nord", label: "nord" },
+    { id: "gruvbox", label: "gruvbox" },
+    { id: "sage", label: "sage" },
+    { id: "sand", label: "sand" },
+  ] as const;
+  const reducedMotionQuery = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+  let paletteTransitionTimer: number | undefined;
+  let paletteAnimationTimer: number | undefined;
+  let paletteRotation = 0;
+
+  const getCurrentPalette = () => root.dataset.siteTheme ?? palettes[0].id;
+  const getPaletteIndex = (id: string) => {
+    const index = palettes.findIndex((palette) => palette.id === id);
+    return index >= 0 ? index : 0;
+  };
+
+  const storePalette = (id: string) => {
+    try {
+      localStorage.setItem(siteThemeKey, id);
+    } catch {
+      return;
+    }
+  };
+
+  const startPaletteTransition = () => {
+    if (reducedMotionQuery.matches) {
+      return;
+    }
+
+    window.clearTimeout(paletteTransitionTimer);
+    root.classList.add("theme-transitioning");
+    root.getBoundingClientRect();
+    paletteTransitionTimer = window.setTimeout(() => {
+      root.classList.remove("theme-transitioning");
+    }, 620);
+  };
+
+  const animatePaletteIcon = () => {
+    if (!(paletteIconShell instanceof HTMLElement)) {
+      return;
+    }
+
+    window.clearTimeout(paletteAnimationTimer);
+    paletteRotation += 360;
+    paletteIconShell.style.setProperty(
+      "--palette-toggle-rotation",
+      `${paletteRotation}deg`
+    );
+    paletteIconShell.classList.remove("is-pouring");
+    paletteIconShell.getBoundingClientRect();
+    paletteIconShell.classList.add("is-pouring");
+    paletteAnimationTimer = window.setTimeout(() => {
+      paletteIconShell.classList.remove("is-pouring");
+    }, 680);
+  };
+
+  const syncPaletteButton = () => {
+    if (!(paletteToggle instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const currentId = getCurrentPalette();
+    const currentIndex = getPaletteIndex(currentId);
+    const currentPalette = palettes[currentIndex] ?? palettes[0];
+
+    if (paletteLabel instanceof HTMLElement) {
+      paletteLabel.textContent = currentPalette.label;
+    }
+
+    paletteToggle.setAttribute(
+      "aria-label",
+      `switch color theme, current ${currentPalette.label}`
+    );
+    paletteToggle.setAttribute("title", `color theme: ${currentPalette.label}`);
+  };
+
+  paletteToggle?.addEventListener("click", () => {
+    const currentIndex = getPaletteIndex(getCurrentPalette());
+    const nextPalette =
+      palettes[(currentIndex + 1) % palettes.length] ?? palettes[0];
+
+    startPaletteTransition();
+    animatePaletteIcon();
+    root.dataset.siteTheme = nextPalette.id;
+    storePalette(nextPalette.id);
+    syncPaletteButton();
+  });
+
+  syncPaletteButton();
+</script>
+
+<style is:global>
+  .palette-toggle-label {
+    display: inline-block;
+    flex: 0 0 4.25rem;
+    width: 4.25rem;
+    text-align: left;
+  }
+
+  .palette-toggle-icon-shell {
+    position: relative;
+    display: inline-flex;
+    color: var(--site-accent-strong);
+    transform: rotate(var(--palette-toggle-rotation, 0deg));
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: transform 520ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .palette-toggle-icon-shell::after {
+    position: absolute;
+    right: -0.18rem;
+    bottom: 0.08rem;
+    width: 0.28rem;
+    height: 0.28rem;
+    content: "";
+    background: currentColor;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translate(-0.35rem, -0.12rem) scale(0.6);
+  }
+
+  .palette-toggle-icon {
+    transform-origin: 42% 58%;
+    transform-box: fill-box;
+    transition:
+      color 240ms ease,
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .palette-toggle-icon > * {
+    stroke-width: 2.15;
+  }
+
+  .group\/palette:hover .palette-toggle-icon {
+    transform: rotate(-12deg) translateY(-0.02rem);
+  }
+
+  .group\/palette:active .palette-toggle-icon {
+    transform: rotate(-26deg) translateY(0.02rem) scale(0.92);
+  }
+
+  .palette-toggle-icon-shell.is-pouring .palette-toggle-icon {
+    animation: paletteBucketPour 680ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .palette-toggle-icon-shell.is-pouring::after {
+    animation: paletteBucketDrop 680ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes paletteBucketPour {
+    0%,
+    100% {
+      transform: rotate(0deg) translateY(0);
+    }
+
+    38% {
+      transform: rotate(-32deg) translateY(-0.05rem);
+    }
+
+    64% {
+      transform: rotate(-18deg) translateY(0.03rem);
+    }
+  }
+
+  @keyframes paletteBucketDrop {
+    0%,
+    26% {
+      opacity: 0;
+      transform: translate(-0.35rem, -0.12rem) scale(0.6);
+    }
+
+    42% {
+      opacity: 1;
+      transform: translate(0.04rem, 0.16rem) scale(1);
+    }
+
+    74% {
+      opacity: 0;
+      transform: translate(0.16rem, 0.46rem) scale(0.72);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(0.16rem, 0.46rem) scale(0.72);
+    }
+  }
+
+  html.theme-transitioning .palette-toggle-icon-shell {
+    transition: transform 560ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html.theme-transitioning .palette-toggle-icon,
+  html.theme-transitioning .palette-toggle-icon > * {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-duration: 560ms;
+    transition-property: color, opacity, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .palette-toggle-icon-shell,
+    .palette-toggle-icon,
+    .palette-toggle-icon > *,
+    .palette-toggle-icon-shell::after {
+      transition: none;
+      animation: none;
+    }
+  }
+</style>

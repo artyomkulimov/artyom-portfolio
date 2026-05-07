@@ -1,4 +1,5 @@
 ---
+import PaletteToggle from "./PaletteToggle.astro";
 import ShowcaseIcon from "./ShowcaseIcons.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
@@ -22,9 +23,16 @@ const { variant = "default" } = Astro.props;
     </div>
   </header>
 ) : (
-  <aside class="pointer-events-none absolute top-5 right-5 z-50 tracking-tight">
-    <div class="pointer-events-auto">
-      <ThemeToggle />
-    </div>
-  </aside>
+  <>
+    <aside class="pointer-events-none absolute top-5 left-5 z-50 tracking-tight">
+      <div class="pointer-events-auto">
+        <PaletteToggle />
+      </div>
+    </aside>
+    <aside class="pointer-events-none absolute top-5 right-5 z-50 tracking-tight">
+      <div class="pointer-events-auto">
+        <ThemeToggle />
+      </div>
+    </aside>
+  </>
 )}

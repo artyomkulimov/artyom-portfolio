@@ -5,8 +5,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 ::selection {
-  color: #fefefe;
-  background-color: #47a3f3;
+  color: var(--site-selection-text, #fefefe);
+  background-color: var(--site-selection-bg, #5f8390);
 }
 
 :root {
@@ -22,6 +22,288 @@
   font-family: "Geist Variable", sans-serif;
 }
 
+html,
+html[data-site-theme="slate"] {
+  --site-bg: #f6f7f6;
+  --site-fg: #1b2321;
+  --site-selection-bg: #5f8390;
+  --site-selection-text: #fbfdfc;
+  --site-accent-line: #6f8985;
+  --site-accent-strong: #477b86;
+  --site-neutral-50: #fbfbfa;
+  --site-neutral-100: #f0f2f1;
+  --site-neutral-200: #dde3e1;
+  --site-neutral-300: #c4cfcc;
+  --site-neutral-400: #889794;
+  --site-neutral-500: #687875;
+  --site-neutral-600: #50615e;
+  --site-neutral-700: #354440;
+  --site-neutral-800: #27332f;
+  --site-neutral-900: #202a27;
+  --site-neutral-950: #171e1c;
+}
+
+html.dark,
+html.dark[data-site-theme="slate"] {
+  --site-bg: #101415;
+  --site-fg: #e8eeec;
+  --site-selection-bg: #4f7680;
+  --site-selection-text: #f7fbfa;
+  --site-accent-line: #86a5a7;
+  --site-accent-strong: #94bfca;
+  --site-neutral-50: #eef2f1;
+  --site-neutral-100: #e1e7e5;
+  --site-neutral-200: #c7d0cd;
+  --site-neutral-300: #a9b8b4;
+  --site-neutral-400: #879792;
+  --site-neutral-500: #687975;
+  --site-neutral-600: #4c5d59;
+  --site-neutral-700: #34413e;
+  --site-neutral-800: #242d2b;
+  --site-neutral-900: #161c1b;
+  --site-neutral-950: #0b0f10;
+}
+
+html[data-site-theme="mocha"] {
+  --site-bg: #f7f2ec;
+  --site-fg: #2c2521;
+  --site-selection-bg: #9c7667;
+  --site-selection-text: #fffaf5;
+  --site-accent-line: #a98c7d;
+  --site-accent-strong: #9a6f5f;
+  --site-neutral-50: #fffaf5;
+  --site-neutral-100: #f0e7dd;
+  --site-neutral-200: #dfd1c4;
+  --site-neutral-300: #cbb9ab;
+  --site-neutral-400: #988579;
+  --site-neutral-500: #7c685d;
+  --site-neutral-600: #655248;
+  --site-neutral-700: #4c3c34;
+  --site-neutral-800: #382d28;
+  --site-neutral-900: #2c2420;
+  --site-neutral-950: #201917;
+}
+
+html.dark[data-site-theme="mocha"] {
+  --site-bg: #171311;
+  --site-fg: #ece1d5;
+  --site-selection-bg: #765849;
+  --site-selection-text: #fff8ef;
+  --site-accent-line: #a88776;
+  --site-accent-strong: #c49b86;
+  --site-neutral-50: #f2e8dc;
+  --site-neutral-100: #e5d8ca;
+  --site-neutral-200: #d0beae;
+  --site-neutral-300: #b79f8e;
+  --site-neutral-400: #978070;
+  --site-neutral-500: #776357;
+  --site-neutral-600: #5c4a41;
+  --site-neutral-700: #43342e;
+  --site-neutral-800: #2e2420;
+  --site-neutral-900: #1f1916;
+  --site-neutral-950: #120f0d;
+}
+
+html[data-site-theme="pine"] {
+  --site-bg: #f6f1ef;
+  --site-fg: #2c252a;
+  --site-selection-bg: #a16e7d;
+  --site-selection-text: #fff9f7;
+  --site-accent-line: #aa8090;
+  --site-accent-strong: #a06578;
+  --site-neutral-50: #fcf8f6;
+  --site-neutral-100: #f0e6e4;
+  --site-neutral-200: #dfd0cf;
+  --site-neutral-300: #cbb7b8;
+  --site-neutral-400: #977f84;
+  --site-neutral-500: #79636a;
+  --site-neutral-600: #614d55;
+  --site-neutral-700: #493940;
+  --site-neutral-800: #372c31;
+  --site-neutral-900: #2d2529;
+  --site-neutral-950: #211a1e;
+}
+
+html.dark[data-site-theme="pine"] {
+  --site-bg: #151315;
+  --site-fg: #eadfe3;
+  --site-selection-bg: #7e5360;
+  --site-selection-text: #fff7fa;
+  --site-accent-line: #ad828d;
+  --site-accent-strong: #c8919f;
+  --site-neutral-50: #f0e7ea;
+  --site-neutral-100: #e4d8dc;
+  --site-neutral-200: #cfbdc4;
+  --site-neutral-300: #b89ea8;
+  --site-neutral-400: #987c88;
+  --site-neutral-500: #78616b;
+  --site-neutral-600: #5d4a52;
+  --site-neutral-700: #44353c;
+  --site-neutral-800: #30262b;
+  --site-neutral-900: #20191d;
+  --site-neutral-950: #120f11;
+}
+
+html[data-site-theme="nord"] {
+  --site-bg: #f3f6f7;
+  --site-fg: #23313a;
+  --site-selection-bg: #5e81ac;
+  --site-selection-text: #f7fbfc;
+  --site-accent-line: #7b96ac;
+  --site-accent-strong: #51779f;
+  --site-neutral-50: #fbfdfe;
+  --site-neutral-100: #eaf0f2;
+  --site-neutral-200: #d8e1e5;
+  --site-neutral-300: #c1ced5;
+  --site-neutral-400: #8497a3;
+  --site-neutral-500: #657a88;
+  --site-neutral-600: #506372;
+  --site-neutral-700: #394a56;
+  --site-neutral-800: #2c3a44;
+  --site-neutral-900: #23303a;
+  --site-neutral-950: #18222a;
+}
+
+html.dark[data-site-theme="nord"] {
+  --site-bg: #111820;
+  --site-fg: #e6edf0;
+  --site-selection-bg: #55799d;
+  --site-selection-text: #f8fbfc;
+  --site-accent-line: #7fa2bb;
+  --site-accent-strong: #9bbbd0;
+  --site-neutral-50: #edf3f5;
+  --site-neutral-100: #dde8ec;
+  --site-neutral-200: #c4d2d9;
+  --site-neutral-300: #a5b9c3;
+  --site-neutral-400: #829ba9;
+  --site-neutral-500: #637c8b;
+  --site-neutral-600: #4a6070;
+  --site-neutral-700: #344655;
+  --site-neutral-800: #253340;
+  --site-neutral-900: #18232d;
+  --site-neutral-950: #0d131a;
+}
+
+html[data-site-theme="gruvbox"] {
+  --site-bg: #f6efe2;
+  --site-fg: #302920;
+  --site-selection-bg: #9a7a49;
+  --site-selection-text: #fff9ef;
+  --site-accent-line: #aa8b59;
+  --site-accent-strong: #99713c;
+  --site-neutral-50: #fff8ea;
+  --site-neutral-100: #eee2cf;
+  --site-neutral-200: #ddccb2;
+  --site-neutral-300: #c9b492;
+  --site-neutral-400: #96866b;
+  --site-neutral-500: #79684f;
+  --site-neutral-600: #62513a;
+  --site-neutral-700: #493b2a;
+  --site-neutral-800: #392f23;
+  --site-neutral-900: #30281f;
+  --site-neutral-950: #221b15;
+}
+
+html.dark[data-site-theme="gruvbox"] {
+  --site-bg: #181512;
+  --site-fg: #eadfca;
+  --site-selection-bg: #806337;
+  --site-selection-text: #fff8ea;
+  --site-accent-line: #b4935f;
+  --site-accent-strong: #c8a66d;
+  --site-neutral-50: #f0e5d0;
+  --site-neutral-100: #e2d4bb;
+  --site-neutral-200: #cdbb9c;
+  --site-neutral-300: #b49d76;
+  --site-neutral-400: #967e59;
+  --site-neutral-500: #786344;
+  --site-neutral-600: #5f4b31;
+  --site-neutral-700: #443626;
+  --site-neutral-800: #30271d;
+  --site-neutral-900: #211b16;
+  --site-neutral-950: #120f0c;
+}
+
+html[data-site-theme="sage"] {
+  --site-bg: #f3f6f1;
+  --site-fg: #222b25;
+  --site-selection-bg: #6f9077;
+  --site-selection-text: #fbfdf9;
+  --site-accent-line: #82977c;
+  --site-accent-strong: #5f8568;
+  --site-neutral-50: #fbfcf8;
+  --site-neutral-100: #ecf1e8;
+  --site-neutral-200: #dbe4d6;
+  --site-neutral-300: #c3d0be;
+  --site-neutral-400: #899984;
+  --site-neutral-500: #6b7d67;
+  --site-neutral-600: #52634f;
+  --site-neutral-700: #3b493a;
+  --site-neutral-800: #2c372c;
+  --site-neutral-900: #242d24;
+  --site-neutral-950: #181f19;
+}
+
+html.dark[data-site-theme="sage"] {
+  --site-bg: #111711;
+  --site-fg: #e3ebdf;
+  --site-selection-bg: #58725a;
+  --site-selection-text: #fbfdf8;
+  --site-accent-line: #86a07e;
+  --site-accent-strong: #9db994;
+  --site-neutral-50: #eaf1e5;
+  --site-neutral-100: #dce6d7;
+  --site-neutral-200: #c4d1bf;
+  --site-neutral-300: #a6b79f;
+  --site-neutral-400: #84987f;
+  --site-neutral-500: #667b62;
+  --site-neutral-600: #4d604a;
+  --site-neutral-700: #374536;
+  --site-neutral-800: #263126;
+  --site-neutral-900: #192119;
+  --site-neutral-950: #0c110c;
+}
+
+html[data-site-theme="sand"] {
+  --site-bg: #f7f2e8;
+  --site-fg: #2d2821;
+  --site-selection-bg: #97784f;
+  --site-selection-text: #fffaf0;
+  --site-accent-line: #a58b62;
+  --site-accent-strong: #8f7148;
+  --site-neutral-50: #fffaf0;
+  --site-neutral-100: #efe7d7;
+  --site-neutral-200: #ded2bd;
+  --site-neutral-300: #c9b99b;
+  --site-neutral-400: #97876e;
+  --site-neutral-500: #7a6a52;
+  --site-neutral-600: #63533e;
+  --site-neutral-700: #4a3d2d;
+  --site-neutral-800: #393024;
+  --site-neutral-900: #2f2820;
+  --site-neutral-950: #211b15;
+}
+
+html.dark[data-site-theme="sand"] {
+  --site-bg: #17130f;
+  --site-fg: #e9dfce;
+  --site-selection-bg: #735936;
+  --site-selection-text: #fff9ed;
+  --site-accent-line: #a99065;
+  --site-accent-strong: #c0a06a;
+  --site-neutral-50: #efe5d3;
+  --site-neutral-100: #e1d4bf;
+  --site-neutral-200: #ccb99a;
+  --site-neutral-300: #b39d78;
+  --site-neutral-400: #95805e;
+  --site-neutral-500: #776446;
+  --site-neutral-600: #5c4c36;
+  --site-neutral-700: #433628;
+  --site-neutral-800: #2e261d;
+  --site-neutral-900: #201912;
+  --site-neutral-950: #110d0a;
+}
+
 .font-mono,
 code,
 pre {
@@ -29,27 +311,54 @@ pre {
 }
 
 html {
-  --border-glow-edge: rgb(229 229 229);
-  --border-glow-shadow: rgba(156, 163, 175, 0.1);
-  --border-glow-peak: rgb(156 163 175);
-  --border-glow-peak-shadow: rgba(156, 163, 175, 0.3);
-  --project-line: rgb(38 38 38);
+  --border-glow-edge: var(--site-neutral-200);
+  --border-glow-shadow: color-mix(
+    in srgb,
+    var(--site-accent-strong) 12%,
+    transparent
+  );
+  --border-glow-peak: var(--site-accent-line);
+  --border-glow-peak-shadow: color-mix(
+    in srgb,
+    var(--site-accent-strong) 26%,
+    transparent
+  );
+  --color-black: var(--site-fg);
+  --color-neutral-50: var(--site-neutral-50);
+  --color-neutral-100: var(--site-neutral-100);
+  --color-neutral-200: var(--site-neutral-200);
+  --color-neutral-300: var(--site-neutral-300);
+  --color-neutral-400: var(--site-neutral-400);
+  --color-neutral-500: var(--site-neutral-500);
+  --color-neutral-600: var(--site-neutral-600);
+  --color-neutral-700: var(--site-neutral-700);
+  --color-neutral-800: var(--site-neutral-800);
+  --color-neutral-900: var(--site-neutral-900);
+  --color-neutral-950: var(--site-neutral-950);
+  --color-white: var(--site-bg);
+  --project-line: var(--site-accent-line);
+  --site-link-hover: var(--site-neutral-800);
   min-width: 360px;
   overflow-x: clip;
+  color: var(--site-fg);
   color-scheme: light;
+  background-color: var(--site-bg);
 }
 
 html.dark {
   --sh-class: #4c97f8;
-  --sh-identifier: white;
+  --sh-identifier: var(--site-neutral-50);
   --sh-keyword: #f47067;
   --sh-string: #0fa295;
-  --border-glow-edge: rgb(64 64 64);
-  --border-glow-shadow: rgba(115, 115, 115, 0.1);
-  --border-glow-peak: rgb(115 115 115);
-  --border-glow-peak-shadow: rgba(115, 115, 115, 0.3);
-  --project-line: rgb(229 229 229);
+  --color-black: var(--site-bg);
+  --color-white: var(--site-fg);
+  --site-link-hover: var(--site-neutral-200);
   color-scheme: dark;
+}
+
+body {
+  color: var(--site-fg);
+  background-color: var(--site-bg);
 }
 
 .project-item-y {
@@ -112,7 +421,7 @@ html.dark {
 
 .project-item-showcase:hover .project-showcase-link,
 .project-item-showcase:focus-within .project-showcase-link {
-  color: rgb(38 38 38);
+  color: var(--site-link-hover);
 }
 
 .project-item-showcase:hover .project-showcase-link [data-showcase-arrow],
@@ -124,7 +433,7 @@ html.dark {
 
 html.dark .project-item-showcase:hover .project-showcase-link,
 html.dark .project-item-showcase:focus-within .project-showcase-link {
-  color: rgb(229 229 229);
+  color: var(--site-link-hover);
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -140,7 +449,7 @@ html.dark .project-item-showcase:focus-within .project-showcase-link {
 
   .project-item-showcase.is-mobile-pressed .project-showcase-link,
   .project-item-showcase:active .project-showcase-link {
-    color: rgb(38 38 38);
+    color: var(--site-link-hover);
   }
 
   .project-item-showcase.is-mobile-pressed
@@ -152,7 +461,7 @@ html.dark .project-item-showcase:focus-within .project-showcase-link {
 
   html.dark .project-item-showcase.is-mobile-pressed .project-showcase-link,
   html.dark .project-item-showcase:active .project-showcase-link {
-    color: rgb(229 229 229);
+    color: var(--site-link-hover);
   }
 }
 
@@ -165,9 +474,14 @@ html.dark .project-item-showcase:focus-within .project-showcase-link {
 .showcase-phone {
   position: relative;
   padding: 0.45rem;
-  background: linear-gradient(145deg, rgb(38 38 38), rgb(0 0 0));
+  background: linear-gradient(
+    145deg,
+    var(--site-neutral-800),
+    var(--site-neutral-950)
+  );
   border-radius: 2rem;
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 28px 70px
+    color-mix(in srgb, var(--site-neutral-950) 20%, transparent);
 }
 
 .showcase-phone-fan .showcase-phone {
@@ -183,7 +497,7 @@ html.dark .project-item-showcase:focus-within .project-showcase-link {
   width: 32%;
   height: 0.42rem;
   content: "";
-  background: rgb(10 10 10);
+  background: var(--site-neutral-950);
   border-radius: 999px;
   transform: translateX(-50%);
 }
@@ -199,7 +513,7 @@ html.dark .project-item-showcase:focus-within .project-showcase-link {
 
 .showcase-phone-screen {
   overflow: hidden;
-  background: rgb(245 245 245);
+  background: var(--site-neutral-100);
   border-radius: 1.55rem;
 }
 
