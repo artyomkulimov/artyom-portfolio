@@ -4,17 +4,13 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 
 <button
   type="button"
-  class="group/palette m-1 inline-flex h-9 origin-left items-center justify-start gap-2 px-3 font-mono text-xs leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
+  class="group/palette inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[13px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
   data-palette-toggle
   aria-label="switch color theme"
   title="color theme"
 >
-  <span
-    aria-hidden="true"
-    class="palette-toggle-icon-shell"
-    data-palette-icon-shell
-  >
-    <PaintBucket class="palette-toggle-icon h-4.5 w-4.5" />
+  <span aria-hidden="true" class="palette-toggle-icon-shell">
+    <PaintBucket class="palette-toggle-icon h-4 w-4" />
   </span>
   <span class="palette-toggle-label" data-palette-label aria-hidden="true">
     gruvbox
@@ -23,9 +19,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 
 <script>
   const paletteToggle = document.querySelector("[data-palette-toggle]");
-  const paletteIconShell = paletteToggle?.querySelector(
-    "[data-palette-icon-shell]"
-  );
   const paletteLabel = paletteToggle?.querySelector("[data-palette-label]");
   const root = document.documentElement;
   const siteThemeKey = "site-theme";
@@ -43,8 +36,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     "(prefers-reduced-motion: reduce)"
   );
   let paletteTransitionTimer: number | undefined;
-  let paletteAnimationTimer: number | undefined;
-  const palettePourDuration = 820;
 
   const getCurrentPalette = () => root.dataset.siteTheme ?? palettes[0].id;
   const getPaletteIndex = (id: string) => {
@@ -73,20 +64,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     }, 620);
   };
 
-  const animatePaletteIcon = () => {
-    if (!(paletteIconShell instanceof HTMLElement)) {
-      return;
-    }
-
-    window.clearTimeout(paletteAnimationTimer);
-    if (!paletteIconShell.classList.contains("is-pouring")) {
-      paletteIconShell.classList.add("is-pouring");
-    }
-    paletteAnimationTimer = window.setTimeout(() => {
-      paletteIconShell.classList.remove("is-pouring");
-    }, palettePourDuration);
-  };
-
   const syncPaletteButton = () => {
     if (!(paletteToggle instanceof HTMLButtonElement)) {
       return;
@@ -113,7 +90,6 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
       palettes[(currentIndex + 1) % palettes.length] ?? palettes[0];
 
     startPaletteTransition();
-    animatePaletteIcon();
     root.dataset.siteTheme = nextPalette.id;
     storePalette(nextPalette.id);
     syncPaletteButton();
@@ -123,137 +99,41 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 </script>
 
 <style is:global>
-  [data-palette-toggle] {
-    overflow: visible;
-  }
-
   .palette-toggle-label {
     display: inline-block;
-    flex: 0 0 4.25rem;
-    width: 4.25rem;
-    text-align: left;
   }
 
   .palette-toggle-icon-shell {
-    position: relative;
     display: inline-flex;
-    overflow: visible;
     color: var(--site-accent-strong);
     transform-origin: center;
-    transform-box: fill-box;
-  }
-
-  .palette-toggle-icon-shell::after {
-    position: absolute;
-    right: -0.18rem;
-    bottom: 0.08rem;
-    width: 0.28rem;
-    height: 0.28rem;
-    pointer-events: none;
-    content: "";
-    background: currentColor;
-    border-radius: 999px;
-    opacity: 0;
-    transform: translate3d(-0.38rem, -0.08rem, 0);
-    will-change: opacity, transform;
-  }
-
-  .palette-toggle-icon {
-    --palette-bucket-rest-rotation: 0deg;
-    --palette-bucket-rest-y: 0rem;
-    overflow: visible;
-    transform: rotate(var(--palette-bucket-rest-rotation))
-      translateY(var(--palette-bucket-rest-y));
-    transform-origin: 42% 58%;
     transform-box: fill-box;
     transition:
       color 240ms ease,
       transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform;
+  }
+
+  .palette-toggle-icon {
+    overflow: visible;
+    transform-origin: 42% 58%;
+    transform-box: fill-box;
   }
 
   .palette-toggle-icon > * {
     stroke-width: 2.15;
   }
 
-  .group\/palette:hover .palette-toggle-icon {
-    --palette-bucket-rest-rotation: -12deg;
-    --palette-bucket-rest-y: -0.02rem;
+  .group\/palette:hover .palette-toggle-icon-shell {
+    transform: rotate(-12deg) translateY(-0.02rem);
   }
 
-  .palette-toggle-icon-shell.is-pouring .palette-toggle-icon {
-    animation: paletteBucketPour 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .palette-toggle-icon-shell.is-pouring::after {
-    animation: paletteBucketDrop 820ms linear both;
-  }
-
-  @keyframes paletteBucketPour {
-    0%,
-    100% {
-      transform: rotate(var(--palette-bucket-rest-rotation))
-        translateY(var(--palette-bucket-rest-y));
-    }
-
-    38% {
-      transform: rotate(calc(var(--palette-bucket-rest-rotation) - 20deg))
-        translateY(-0.05rem);
-    }
-
-    64% {
-      transform: rotate(calc(var(--palette-bucket-rest-rotation) - 6deg))
-        translateY(0.03rem);
-    }
-  }
-
-  @keyframes paletteBucketDrop {
-    0%,
-    22% {
-      opacity: 0;
-      transform: translate3d(-0.38rem, -0.08rem, 0);
-    }
-
-    36% {
-      opacity: 0.72;
-      transform: translate3d(-0.2rem, 0.05rem, 0);
-    }
-
-    48% {
-      opacity: 1;
-      transform: translate3d(-0.04rem, 0.18rem, 0);
-    }
-
-    68% {
-      opacity: 0.68;
-      transform: translate3d(0.1rem, 0.38rem, 0);
-    }
-
-    84% {
-      opacity: 0.22;
-      transform: translate3d(0.15rem, 0.5rem, 0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translate3d(0.18rem, 0.58rem, 0);
-    }
-  }
-
-  html.theme-transitioning .palette-toggle-icon,
-  html.theme-transitioning .palette-toggle-icon > * {
-    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-    transition-duration: 560ms;
-    transition-property: color, opacity, transform;
+  .group\/palette:active .palette-toggle-icon-shell {
+    transform: rotate(-4deg) scale(0.92);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .palette-toggle-icon-shell,
-    .palette-toggle-icon,
-    .palette-toggle-icon > *,
-    .palette-toggle-icon-shell::after {
+    .palette-toggle-icon-shell {
       transition: none;
-      animation: none;
     }
   }
 </style>

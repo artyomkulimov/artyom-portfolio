@@ -1,7 +1,5 @@
 ---
-import PaletteToggle from "./PaletteToggle.astro";
 import ShowcaseIcon from "./ShowcaseIcons.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   variant?: "default" | "showcase";
@@ -22,12 +20,4 @@ const { variant = "default" } = Astro.props;
       </a>
     </div>
   </header>
-) : (
-  <nav
-    aria-label="site appearance"
-    class="mb-6 flex w-full items-center justify-between tracking-tight"
-  >
-    <PaletteToggle />
-    <ThemeToggle />
-  </nav>
-)}
+) : null}

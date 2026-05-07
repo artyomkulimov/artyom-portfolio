@@ -4,27 +4,22 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
 <button
   type="button"
-  class="group/theme m-1 inline-flex h-9 origin-right items-center justify-end gap-2 px-3 font-mono text-xs leading-5 text-neutral-600 transition-[color,transform] duration-150 hover:text-neutral-800 active:scale-[0.97] focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200"
+  class="group/theme inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[13px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
   data-theme-toggle
   aria-label="toggle color mode"
   title="toggle theme"
 >
+  <span aria-hidden="true" class="theme-toggle-icon-shell">
+    <SunMoon class="theme-toggle-icon h-4 w-4" />
+  </span>
   <span class="theme-toggle-label" aria-hidden="true">
     <span class="theme-toggle-label-dark">dark</span>
     <span class="theme-toggle-label-light">light</span>
-  </span>
-  <span
-    aria-hidden="true"
-    class="theme-toggle-icon-shell"
-    data-theme-icon-shell
-  >
-    <SunMoon class="theme-toggle-icon h-4.5 w-4.5" />
   </span>
 </button>
 
 <script>
   const themeToggle = document.querySelector("[data-theme-toggle]");
-  const themeIconShell = themeToggle?.querySelector("[data-theme-icon-shell]");
   const root = document.documentElement;
   const themeModeKey = "theme-mode";
   const reducedMotionQuery = window.matchMedia(
@@ -32,13 +27,22 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
   );
   let themeTransitionTimer: number | undefined;
 
-  localStorage.removeItem("theme");
-  localStorage.removeItem("theme-preference");
+  try {
+    localStorage.removeItem("theme");
+    localStorage.removeItem("theme-preference");
+  } catch {
+    // Storage can be unavailable in strict browser modes.
+  }
 
-  const getStoredTheme = () => localStorage.getItem(themeModeKey);
+  const getStoredTheme = () => {
+    try {
+      return localStorage.getItem(themeModeKey);
+    } catch {
+      return null;
+    }
+  };
   const getCurrentTheme = () =>
     root.classList.contains("dark") ? "dark" : "light";
-  let themeRotation = getCurrentTheme() === "dark" ? 180 : 0;
 
   const startThemeTransition = () => {
     if (reducedMotionQuery.matches) {
@@ -53,18 +57,6 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
     }, 620);
   };
 
-  const rotateThemeIcon = () => {
-    if (!(themeIconShell instanceof HTMLElement)) {
-      return;
-    }
-
-    themeRotation += 180;
-    themeIconShell.style.setProperty(
-      "--theme-toggle-rotation",
-      `${themeRotation}deg`
-    );
-  };
-
   const syncThemeButton = () => {
     if (!(themeToggle instanceof HTMLButtonElement)) {
       return;
@@ -77,9 +69,12 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
   themeToggle?.addEventListener("click", () => {
     const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
     startThemeTransition();
-    rotateThemeIcon();
     root.classList.toggle("dark", nextTheme === "dark");
-    localStorage.setItem(themeModeKey, nextTheme);
+    try {
+      localStorage.setItem(themeModeKey, nextTheme);
+    } catch {
+      // Storage can be unavailable in strict browser modes.
+    }
     syncThemeButton();
   });
 
@@ -92,8 +87,6 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
       startThemeTransition();
       root.classList.toggle("dark", event.matches);
-      themeRotation = event.matches ? 180 : 0;
-      themeIconShell?.removeAttribute("style");
       syncThemeButton();
     });
 
@@ -103,34 +96,33 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 <style is:global>
   .theme-toggle-label {
     display: inline-grid;
-    flex: 0 0 2.65rem;
-    width: 2.65rem;
-    text-align: right;
   }
 
   .theme-toggle-label > span {
     grid-area: 1 / 1;
-    justify-self: end;
   }
 
-  .theme-toggle-label-light {
+  .theme-toggle-label-dark {
     visibility: hidden;
   }
 
   html.dark .theme-toggle-label-dark {
-    visibility: hidden;
+    visibility: visible;
   }
 
   html.dark .theme-toggle-label-light {
-    visibility: visible;
+    visibility: hidden;
   }
 
   .theme-toggle-icon-shell {
     display: inline-flex;
+    color: var(--site-accent-strong);
     transform: rotate(var(--theme-toggle-rotation, 0deg));
     transform-origin: center;
     transform-box: fill-box;
-    transition: transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
+    transition:
+      color 240ms ease,
+      transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
   html.dark .theme-toggle-icon-shell {
@@ -143,55 +135,21 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
     transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .theme-toggle-icon > * {
-    transform-origin: center;
-    transform-box: fill-box;
-    transition:
-      opacity 220ms ease,
-      transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .group\/theme:hover .theme-toggle-icon {
     transform: rotate(-10deg);
-  }
-
-  .group\/theme:active .theme-toggle-icon {
-    transform: rotate(8deg) scale(0.9);
-  }
-
-  .theme-toggle-icon > :nth-child(1),
-  .theme-toggle-icon > :nth-child(4),
-  .theme-toggle-icon > :nth-child(5) {
-    opacity: 0.65;
-  }
-
-  .theme-toggle-icon > :nth-child(2) {
-    transform: scale(0.92);
   }
 
   html.dark .group\/theme:hover .theme-toggle-icon {
     transform: rotate(10deg);
   }
 
-  html.dark .group\/theme:active .theme-toggle-icon {
-    transform: rotate(18deg) scale(0.9);
-  }
-
-  html.dark .theme-toggle-icon > :nth-child(1),
-  html.dark .theme-toggle-icon > :nth-child(4),
-  html.dark .theme-toggle-icon > :nth-child(5) {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-
-  html.dark .theme-toggle-icon > :nth-child(2) {
-    transform: scale(1);
+  .group\/theme:active .theme-toggle-icon {
+    transform: scale(0.9);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .theme-toggle-icon-shell,
-    .theme-toggle-icon,
-    .theme-toggle-icon > * {
+    .theme-toggle-icon {
       transition: none;
     }
   }
