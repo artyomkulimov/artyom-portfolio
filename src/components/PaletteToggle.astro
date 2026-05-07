@@ -121,6 +121,10 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
 </script>
 
 <style is:global>
+  [data-palette-toggle] {
+    overflow: visible;
+  }
+
   .palette-toggle-label {
     display: inline-block;
     flex: 0 0 4.25rem;
@@ -131,6 +135,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   .palette-toggle-icon-shell {
     position: relative;
     display: inline-flex;
+    overflow: visible;
     color: var(--site-accent-strong);
     transform-origin: center;
     transform-box: fill-box;
@@ -142,6 +147,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
     bottom: 0.08rem;
     width: 0.28rem;
     height: 0.28rem;
+    pointer-events: none;
     content: "";
     background: currentColor;
     border-radius: 999px;
@@ -152,6 +158,7 @@ import PaintBucket from "@lucide/astro/icons/paint-bucket";
   .palette-toggle-icon {
     --palette-bucket-rest-rotation: 0deg;
     --palette-bucket-rest-y: 0rem;
+    overflow: visible;
     transform: rotate(var(--palette-bucket-rest-rotation))
       translateY(var(--palette-bucket-rest-y));
     transform-origin: 42% 58%;
