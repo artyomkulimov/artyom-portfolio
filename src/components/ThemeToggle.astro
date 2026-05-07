@@ -4,13 +4,13 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
 <button
   type="button"
-  class="group/theme inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[13px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
+  class="group/theme inline-flex min-h-6 cursor-pointer appearance-none items-center gap-1.5 border-0 bg-transparent p-0 font-mono text-[14px] leading-6 text-neutral-500 transition-colors hover:text-neutral-800 focus-visible:text-neutral-800 focus-visible:underline focus-visible:decoration-neutral-400 focus-visible:underline-offset-4 focus-visible:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus-visible:text-neutral-200 dark:focus-visible:decoration-neutral-600"
   data-theme-toggle
   aria-label="toggle color mode"
   title="toggle theme"
 >
   <span aria-hidden="true" class="theme-toggle-icon-shell">
-    <SunMoon class="theme-toggle-icon h-4 w-4" />
+    <SunMoon class="theme-toggle-icon h-4.5 w-4.5" />
   </span>
   <span class="theme-toggle-label" aria-hidden="true">
     <span class="theme-toggle-label-dark">dark</span>
@@ -95,23 +95,19 @@ import SunMoon from "@lucide/astro/icons/sun-moon";
 
 <style is:global>
   .theme-toggle-label {
-    display: inline-grid;
-  }
-
-  .theme-toggle-label > span {
-    grid-area: 1 / 1;
+    display: inline-block;
   }
 
   .theme-toggle-label-dark {
-    visibility: hidden;
+    display: none;
   }
 
   html.dark .theme-toggle-label-dark {
-    visibility: visible;
+    display: inline;
   }
 
   html.dark .theme-toggle-label-light {
-    visibility: hidden;
+    display: none;
   }
 
   .theme-toggle-icon-shell {

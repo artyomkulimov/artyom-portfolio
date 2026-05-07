@@ -21,14 +21,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </h1>
         <div
           aria-label="site appearance"
-          class="mt-1 flex flex-wrap items-center gap-x-2 font-mono text-[13px] leading-6 text-neutral-500 dark:text-neutral-400"
+          class="mt-3 flex flex-wrap items-center gap-x-2 font-mono text-[14px] leading-6 text-neutral-500 dark:text-neutral-400"
         >
           <PaletteToggle />
           <span
             aria-hidden="true"
             class="text-neutral-300 dark:text-neutral-700"
           >
-            -
+            /
           </span>
           <ThemeToggle />
         </div>
@@ -91,7 +91,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </p>
           <SkillTags
             skills={[
-              'server actions/auth',
+              'server actions',
               'database schema design',
               'currency calculations',
               'spreadsheet exports',
