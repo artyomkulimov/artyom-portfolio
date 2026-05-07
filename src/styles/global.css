@@ -24,23 +24,23 @@
 
 html,
 html[data-site-theme="slate"] {
-  --site-bg: #f6f7f6;
-  --site-fg: #1b2321;
-  --site-selection-bg: #5f8390;
-  --site-selection-text: #fbfdfc;
-  --site-accent-line: #6f8985;
-  --site-accent-strong: #477b86;
-  --site-neutral-50: #fbfbfa;
-  --site-neutral-100: #f0f2f1;
-  --site-neutral-200: #dde3e1;
-  --site-neutral-300: #c4cfcc;
-  --site-neutral-400: #889794;
-  --site-neutral-500: #687875;
-  --site-neutral-600: #50615e;
-  --site-neutral-700: #354440;
-  --site-neutral-800: #27332f;
-  --site-neutral-900: #202a27;
-  --site-neutral-950: #171e1c;
+  --site-bg: #eef4f5;
+  --site-fg: #1b292c;
+  --site-selection-bg: #557f8b;
+  --site-selection-text: #f8fcfd;
+  --site-accent-line: #668d96;
+  --site-accent-strong: #3f7788;
+  --site-neutral-50: #f8fbfb;
+  --site-neutral-100: #e5eef0;
+  --site-neutral-200: #d0dfe3;
+  --site-neutral-300: #b5c8ce;
+  --site-neutral-400: #7d9299;
+  --site-neutral-500: #60777e;
+  --site-neutral-600: #485e65;
+  --site-neutral-700: #33474d;
+  --site-neutral-800: #26383e;
+  --site-neutral-900: #1d2c31;
+  --site-neutral-950: #142125;
 }
 
 html.dark,
@@ -65,23 +65,23 @@ html.dark[data-site-theme="slate"] {
 }
 
 html[data-site-theme="mocha"] {
-  --site-bg: #f7f2ec;
-  --site-fg: #2c2521;
-  --site-selection-bg: #9c7667;
-  --site-selection-text: #fffaf5;
-  --site-accent-line: #a98c7d;
-  --site-accent-strong: #9a6f5f;
-  --site-neutral-50: #fffaf5;
-  --site-neutral-100: #f0e7dd;
-  --site-neutral-200: #dfd1c4;
-  --site-neutral-300: #cbb9ab;
-  --site-neutral-400: #988579;
-  --site-neutral-500: #7c685d;
-  --site-neutral-600: #655248;
-  --site-neutral-700: #4c3c34;
-  --site-neutral-800: #382d28;
-  --site-neutral-900: #2c2420;
-  --site-neutral-950: #201917;
+  --site-bg: #f3e5da;
+  --site-fg: #30241f;
+  --site-selection-bg: #9d725e;
+  --site-selection-text: #fff7f0;
+  --site-accent-line: #ac806d;
+  --site-accent-strong: #995f4d;
+  --site-neutral-50: #fff8f1;
+  --site-neutral-100: #ecddd0;
+  --site-neutral-200: #dbc4b3;
+  --site-neutral-300: #c5a994;
+  --site-neutral-400: #9a7768;
+  --site-neutral-500: #7f604f;
+  --site-neutral-600: #674a3b;
+  --site-neutral-700: #4f382d;
+  --site-neutral-800: #3b2c25;
+  --site-neutral-900: #30231e;
+  --site-neutral-950: #221814;
 }
 
 html.dark[data-site-theme="mocha"] {
@@ -105,23 +105,23 @@ html.dark[data-site-theme="mocha"] {
 }
 
 html[data-site-theme="pine"] {
-  --site-bg: #f6f1ef;
-  --site-fg: #2c252a;
-  --site-selection-bg: #a16e7d;
-  --site-selection-text: #fff9f7;
-  --site-accent-line: #aa8090;
-  --site-accent-strong: #a06578;
-  --site-neutral-50: #fcf8f6;
-  --site-neutral-100: #f0e6e4;
-  --site-neutral-200: #dfd0cf;
-  --site-neutral-300: #cbb7b8;
-  --site-neutral-400: #977f84;
-  --site-neutral-500: #79636a;
-  --site-neutral-600: #614d55;
-  --site-neutral-700: #493940;
-  --site-neutral-800: #372c31;
-  --site-neutral-900: #2d2529;
-  --site-neutral-950: #211a1e;
+  --site-bg: #f4e7eb;
+  --site-fg: #30232b;
+  --site-selection-bg: #9f6678;
+  --site-selection-text: #fff7fa;
+  --site-accent-line: #b27487;
+  --site-accent-strong: #a6536f;
+  --site-neutral-50: #fff8fa;
+  --site-neutral-100: #eddce2;
+  --site-neutral-200: #ddc3cc;
+  --site-neutral-300: #c9a6b4;
+  --site-neutral-400: #9b7282;
+  --site-neutral-500: #805b6b;
+  --site-neutral-600: #684555;
+  --site-neutral-700: #503340;
+  --site-neutral-800: #3d2731;
+  --site-neutral-900: #312129;
+  --site-neutral-950: #24171e;
 }
 
 html.dark[data-site-theme="pine"] {
@@ -145,23 +145,23 @@ html.dark[data-site-theme="pine"] {
 }
 
 html[data-site-theme="nord"] {
-  --site-bg: #f3f6f7;
-  --site-fg: #23313a;
-  --site-selection-bg: #5e81ac;
-  --site-selection-text: #f7fbfc;
-  --site-accent-line: #7b96ac;
-  --site-accent-strong: #51779f;
-  --site-neutral-50: #fbfdfe;
-  --site-neutral-100: #eaf0f2;
-  --site-neutral-200: #d8e1e5;
-  --site-neutral-300: #c1ced5;
-  --site-neutral-400: #8497a3;
-  --site-neutral-500: #657a88;
-  --site-neutral-600: #506372;
-  --site-neutral-700: #394a56;
-  --site-neutral-800: #2c3a44;
-  --site-neutral-900: #23303a;
-  --site-neutral-950: #18222a;
+  --site-bg: #e9f2f7;
+  --site-fg: #20313d;
+  --site-selection-bg: #557faa;
+  --site-selection-text: #f7fbfd;
+  --site-accent-line: #6f94b5;
+  --site-accent-strong: #4b7ca9;
+  --site-neutral-50: #f7fbfd;
+  --site-neutral-100: #dceaf1;
+  --site-neutral-200: #c7dce7;
+  --site-neutral-300: #aac7d6;
+  --site-neutral-400: #7595a8;
+  --site-neutral-500: #5a798e;
+  --site-neutral-600: #436074;
+  --site-neutral-700: #31495a;
+  --site-neutral-800: #273a48;
+  --site-neutral-900: #1f303c;
+  --site-neutral-950: #15232d;
 }
 
 html.dark[data-site-theme="nord"] {
@@ -185,23 +185,23 @@ html.dark[data-site-theme="nord"] {
 }
 
 html[data-site-theme="gruvbox"] {
-  --site-bg: #f6efe2;
-  --site-fg: #302920;
-  --site-selection-bg: #9a7a49;
-  --site-selection-text: #fff9ef;
-  --site-accent-line: #aa8b59;
-  --site-accent-strong: #99713c;
-  --site-neutral-50: #fff8ea;
-  --site-neutral-100: #eee2cf;
-  --site-neutral-200: #ddccb2;
-  --site-neutral-300: #c9b492;
-  --site-neutral-400: #96866b;
-  --site-neutral-500: #79684f;
-  --site-neutral-600: #62513a;
-  --site-neutral-700: #493b2a;
-  --site-neutral-800: #392f23;
-  --site-neutral-900: #30281f;
-  --site-neutral-950: #221b15;
+  --site-bg: #f2e3c6;
+  --site-fg: #312619;
+  --site-selection-bg: #98723c;
+  --site-selection-text: #fff8e8;
+  --site-accent-line: #ad8548;
+  --site-accent-strong: #956b2e;
+  --site-neutral-50: #fff6e4;
+  --site-neutral-100: #ecd9b8;
+  --site-neutral-200: #dcc49b;
+  --site-neutral-300: #c7a979;
+  --site-neutral-400: #967550;
+  --site-neutral-500: #7b5e3d;
+  --site-neutral-600: #64492c;
+  --site-neutral-700: #4c3724;
+  --site-neutral-800: #3b2b1e;
+  --site-neutral-900: #302419;
+  --site-neutral-950: #211810;
 }
 
 html.dark[data-site-theme="gruvbox"] {
@@ -225,23 +225,23 @@ html.dark[data-site-theme="gruvbox"] {
 }
 
 html[data-site-theme="sage"] {
-  --site-bg: #f3f6f1;
-  --site-fg: #222b25;
-  --site-selection-bg: #6f9077;
-  --site-selection-text: #fbfdf9;
-  --site-accent-line: #82977c;
-  --site-accent-strong: #5f8568;
-  --site-neutral-50: #fbfcf8;
-  --site-neutral-100: #ecf1e8;
-  --site-neutral-200: #dbe4d6;
-  --site-neutral-300: #c3d0be;
-  --site-neutral-400: #899984;
-  --site-neutral-500: #6b7d67;
-  --site-neutral-600: #52634f;
-  --site-neutral-700: #3b493a;
-  --site-neutral-800: #2c372c;
-  --site-neutral-900: #242d24;
-  --site-neutral-950: #181f19;
+  --site-bg: #edf4e6;
+  --site-fg: #202c22;
+  --site-selection-bg: #66896c;
+  --site-selection-text: #fbfdf8;
+  --site-accent-line: #7f9a72;
+  --site-accent-strong: #5e8761;
+  --site-neutral-50: #f8fcf3;
+  --site-neutral-100: #e1edd9;
+  --site-neutral-200: #cfdfc6;
+  --site-neutral-300: #b5cba8;
+  --site-neutral-400: #809778;
+  --site-neutral-500: #637b5e;
+  --site-neutral-600: #4a6349;
+  --site-neutral-700: #364a38;
+  --site-neutral-800: #293a2b;
+  --site-neutral-900: #213022;
+  --site-neutral-950: #162216;
 }
 
 html.dark[data-site-theme="sage"] {
@@ -265,23 +265,23 @@ html.dark[data-site-theme="sage"] {
 }
 
 html[data-site-theme="sand"] {
-  --site-bg: #f7f2e8;
-  --site-fg: #2d2821;
-  --site-selection-bg: #97784f;
-  --site-selection-text: #fffaf0;
-  --site-accent-line: #a58b62;
-  --site-accent-strong: #8f7148;
-  --site-neutral-50: #fffaf0;
-  --site-neutral-100: #efe7d7;
-  --site-neutral-200: #ded2bd;
-  --site-neutral-300: #c9b99b;
-  --site-neutral-400: #97876e;
-  --site-neutral-500: #7a6a52;
-  --site-neutral-600: #63533e;
-  --site-neutral-700: #4a3d2d;
-  --site-neutral-800: #393024;
-  --site-neutral-900: #2f2820;
-  --site-neutral-950: #211b15;
+  --site-bg: #f2e8d3;
+  --site-fg: #30281d;
+  --site-selection-bg: #94794d;
+  --site-selection-text: #fff9ed;
+  --site-accent-line: #a78c5d;
+  --site-accent-strong: #8e7045;
+  --site-neutral-50: #fff8e9;
+  --site-neutral-100: #eadfc8;
+  --site-neutral-200: #dac9a9;
+  --site-neutral-300: #c4ae84;
+  --site-neutral-400: #947e5b;
+  --site-neutral-500: #776346;
+  --site-neutral-600: #604d34;
+  --site-neutral-700: #493a29;
+  --site-neutral-800: #382d22;
+  --site-neutral-900: #30261d;
+  --site-neutral-950: #211a13;
 }
 
 html.dark[data-site-theme="sand"] {
