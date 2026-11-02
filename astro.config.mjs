@@ -9,6 +9,9 @@ export default defineConfig({
     enabled: false,
   },
   prefetch: true,
+  build: {
+    inlineStylesheets: "always",
+  },
   adapter: vercel({
     webAnalytics: {
       enabled: true,
